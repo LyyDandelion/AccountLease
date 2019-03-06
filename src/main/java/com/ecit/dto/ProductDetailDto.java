@@ -32,5 +32,10 @@ public class ProductDetailDto {
     private String updateTime;
     private String imageHost;
     private Integer parentCategoryId;
+    private String account;
+    private String password;
+    private Long createdBy;
+    //是否为本人产品
+    private Boolean mine;
 
 }

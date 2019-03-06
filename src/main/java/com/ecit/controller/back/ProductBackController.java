@@ -1,5 +1,6 @@
 package com.ecit.controller.back;
 
+import com.ecit.dto.ProductDetailDto;
 import com.google.common.collect.Maps;
 import com.ecit.common.Const;
 import com.ecit.common.ResponseCode;
@@ -66,7 +67,30 @@ public class ProductBackController {
     }
 
     /**
-     *
+     * 更新密码
+     * @param session
+     * @param product
+     * @return
+     */
+    @RequestMapping(value="update_password.do",method = RequestMethod.PUT)
+    @ResponseBody
+    public ResponseData updatePassword(HttpSession session, Product product){
+        User user = (User)session.getAttribute(Const.THIS_USER);
+        if(user == null){
+            return ResponseData.fail(ResponseCode.NEED_LOGIN,"用户未登录,请登录管理员");
+        }
+        if(userService.checkAdminRole(user).isSuccess()){
+            //填充我们增加产品的业务逻辑
+            return productService.saveOrUpdateProduct(product);
+        }else{
+            product.setLastUpdatedBy(user.getUserId().longValue());
+            return productService.updatePassword(product);
+        }
+    }
+
+
+    /**
+     * 修改状态
      * @param session
      * @param productId
      * @param status
@@ -87,6 +111,7 @@ public class ProductBackController {
         }
     }
 
+
     @RequestMapping("detail.do")
     @ResponseBody
     public ResponseData getDetail(HttpSession session, Integer productId){
@@ -96,11 +121,10 @@ public class ProductBackController {
 
         }
         if(userService.checkAdminRole(user).isSuccess()){
-            //填充业务
+            //权限
             return productService.manageProductDetail(productId);
-
         }else{
-            return ResponseData.fail("无权限操作");
+            return productService.manageProductDetail(user.getUserId().longValue(),productId);
         }
     }
 

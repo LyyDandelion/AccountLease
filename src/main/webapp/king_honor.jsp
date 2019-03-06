@@ -39,7 +39,7 @@
                     }
                 }
                 else {
-
+                    alert("error:"+data.msg);
                 }
 
             }

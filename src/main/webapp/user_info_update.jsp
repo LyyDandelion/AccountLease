@@ -36,7 +36,7 @@
     <script>
         $(document).ready(function () {
 
-           $("#username").text(localStorage.getItem("username"));
+           $("#username").text(sessionStorage.getItem("username"));
 
             $.ajax({
                 url:"/user/get_user_info.do",

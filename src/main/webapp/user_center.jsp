@@ -30,7 +30,7 @@
     </div>
     <script>
         $(document).ready(function () {
-           var username=localStorage.getItem("username");
+           var username=sessionStorage.getItem("username");
            if(username!=null)
            {
                $.ajax({

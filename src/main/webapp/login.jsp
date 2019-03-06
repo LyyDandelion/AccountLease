@@ -39,7 +39,7 @@
                         success:function (data) {
                             if(data.success)
                             {
-                                localStorage.setItem("username",username);
+                                sessionStorage.setItem("username",username);
                                 $(location).prop('href', 'index.jsp');
                             }
                             else

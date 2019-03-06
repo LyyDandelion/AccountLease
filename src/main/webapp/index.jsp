@@ -32,7 +32,7 @@
     <script>
         $(document).ready(function () {
 
-           var username=localStorage.getItem("username");
+           var username=sessionStorage.getItem("username");
             console.log("username",username);
            if(username!=null)
            {
@@ -48,7 +48,7 @@
                    success:function (data) {
                        if(data.success)
                        {
-                            localStorage.removeItem("username");
+                            sessionStorage.removeItem("username");
                             $(location).prop("href","index.jsp");
                             // $(location).prop("href","login.jsp");
                        }

@@ -109,6 +109,32 @@
         </div>
         <script>
             $(document).ready(function () {
+                var productId = getUrlParam("productId");
+                if (productId != null)
+                {
+                    $.ajax({
+                        url:"/back/product/detail.do",
+                        type:"get",
+                        data:{
+                            productId:productId
+                        },
+                        success:function (data) {
+                            log(data);
+                            if(data.success)
+                            {
+                                var info=data.data;
+                                //todo 存在值，则进行更新产品操作
+                                $("#name").val(info.name);
+                                $("#price").val(info.price);
+                                $("#account").val(info.account);
+                                $("#password").val(info.password);
+                                $("#detail").val(info.detail);
+                                $("#btn_sys").val("系统ID："+info.categoryId)
+                            }
+                        }
+
+                    })
+                }
                 $("#android_qq").click(function () {
                     $("#btn_sys").text($("#android_qq").text()).attr("code","ANDROID_QQ");
                 })
@@ -148,15 +174,26 @@
                                 $("#btn_sys").attr("categoryId",data.data.categoryId);
                         }
                     })
+                    var status;
+                    if(productId!=null)
+                    {
+                        status=2;
+                    }
+                    else
+                    {
+                        status=1;
+                    }
 
                     var product_info={
+                        productId:productId,
                         categoryId:$("#btn_sys").attr("categoryId"),
                         name:$("#name").val(),
                         mainImage:$("#main_img").attr("mainImage"),
                         detail:$("#detail").val(),
                         account:$("#account").val(),
                         password:$("#password").val(),
-                        price:$("#price").val()
+                        price:$("#price").val(),
+                        status:status
                     }
                     $.ajax({
                         url:"/back/product/save.do",

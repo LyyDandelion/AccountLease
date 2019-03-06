@@ -34,7 +34,7 @@ function debug(){
  * 去登录
  */
 function  go_login() {
-    localStorage.removeItem("username");
+    sessionStorage.removeItem("username");
     $(location).prop("href","login.jsp");
 
 }

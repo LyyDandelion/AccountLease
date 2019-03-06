@@ -20,7 +20,7 @@
     <div id="detail_info">
 
     </div>
-    <a id="do_rent">去租它</a>
+    <a id="do_rent" class="rent-class">去租它</a>
 
     <script>
         $(document).ready(function(){
@@ -32,8 +32,23 @@
                 type:"get",
                 data:request_info,
                 success:function (data) {
-                  $("#detail_info").append(JSON.stringify(data));
-                  $("#do_rent").attr("href","build_order.jsp?productId="+data.data.productId);
+                    $("#detail_info").append(JSON.stringify(data));
+                  if(data.success)
+                  {
+                      var info=data.data;
+                      if(info.mine)
+                      {
+
+                          $("#do_rent").hide();
+                      }
+                      else{
+                          $("#do_rent").attr("href","build_order.jsp?productId="+data.data.productId);
+                      }
+                  }
+                  else{
+                      alert("error:"+data.msg);
+                  }
+
                 },
                 error:function (data) {
                     

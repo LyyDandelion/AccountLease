@@ -81,8 +81,8 @@
             //     productId:getUrlParam("productId")
             // }
 
-            localStorage.setItem("quantity",$("#quantity").val());
-            localStorage.setItem("productId",getUrlParam("productId"));
+            sessionStorage.setItem("quantity",$("#quantity").val());
+            sessionStorage.setItem("productId",getUrlParam("productId"));
             $(location).prop("href","cofirm_order.jsp");
 
             $.ajax({

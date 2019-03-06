@@ -67,6 +67,33 @@ public class ProductServiceImpl implements IProductService {
     }
 
 
+    /**
+     * 更新产品密码
+     *
+     * @param product
+     * @return
+     */
+    public ResponseData updatePassword(Product product) {
+        if (product != null) {
+            if (product.getProductId() != null) {
+                Product productInfo = productMapper.selectByPrimaryKey(product.getProductId());
+                productInfo.setLastUpdatedBy(product.getLastUpdatedBy())
+                        .setPassword(product.getPassword());
+
+                int rowCount = productMapper.updateByPrimaryKey(productInfo);
+                if (rowCount > 0) {
+                    return ResponseData.success("更新密码成功");
+                }
+                return ResponseData.fail("更新密码失败");
+            } else {
+
+                return ResponseData.fail("更新密码失败");
+            }
+        }
+        return ResponseData.fail("更新密码参数不正确");
+    }
+
+
     public ResponseData<String> setSaleStatus(Integer productId, Integer status) {
         if (productId == null || status == null) {
             return ResponseData.fail(ResponseCode.ILLEGAL_ARGUMENT, "ILLEGAL_ARGUMENT");
@@ -81,7 +108,7 @@ public class ProductServiceImpl implements IProductService {
         return ResponseData.fail("修改产品销售状态失败");
     }
 
-    public ResponseData<String> setSaleStatus(Long userId,Integer productId, Integer status) {
+    public ResponseData<String> setSaleStatus(Long userId, Integer productId, Integer status) {
         if (productId == null || status == null) {
             return ResponseData.fail(ResponseCode.ILLEGAL_ARGUMENT, "ILLEGAL_ARGUMENT");
         }
@@ -108,6 +135,69 @@ public class ProductServiceImpl implements IProductService {
         return ResponseData.success(productDetailDto);
     }
 
+    /**
+     * 权限查找产品
+     *
+     * @param userId
+     * @param productId
+     * @return
+     */
+    public ResponseData<ProductDetailDto> manageProductDetail(Long userId, Integer productId) {
+        if (productId == null) {
+            return ResponseData.fail(ResponseCode.ILLEGAL_ARGUMENT, "ILLEGAL_ARGUMENT");
+        }
+        //做权限控制
+        List<Product> list = productMapper.selectByUserId(userId);
+        Product product = new Product();
+        for (Product p : list) {
+            if (p.getProductId() == productId) {
+                product = p;
+                break;
+            }
+        }
+        if (product == null) {
+            return ResponseData.fail("产品不存在");
+        }
+        ProductDetailDto productDetailDto = assembleProductDetailVo(product, userId);
+        return ResponseData.success(productDetailDto);
+    }
+
+    /**
+     * 带权限数据转换处理
+     *
+     * @param product
+     * @param userId
+     * @return
+     */
+    private ProductDetailDto assembleProductDetailVo(Product product, Long userId) {
+        ProductDetailDto productDetailDto = new ProductDetailDto();
+        productDetailDto.setProductId(product.getProductId())
+                .setSubtitle(product.getSubtitle())
+                .setPrice(product.getPrice())
+                .setMainImage(product.getMainImage())
+                .setSubImages(product.getSubImages())
+                .setCategoryId(product.getCategoryId())
+                .setDetail(product.getDetail())
+                .setName(product.getName())
+                .setStatus(product.getStatus())
+                .setStock(product.getStock())
+                .setImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix", "http://img.happyecit.com/"));
+        if (userId == product.getCreatedBy()) {
+            productDetailDto.setAccount(product.getAccount()).setPassword(product.getPassword());
+        }
+        Category category = categoryMapper.selectByPrimaryKey(product.getCategoryId());
+        if (category == null) {
+            productDetailDto.setParentCategoryId(0);//默认根节点
+        } else {
+            productDetailDto.setParentCategoryId(category.getParentId());
+        }
+
+        productDetailDto.setCreateTime(DateTimeUtil.dateToStr(product.getCreationDate()))
+                .setUpdateTime(DateTimeUtil.dateToStr(product.getLastUpdateDate()));
+        return productDetailDto;
+    }
+
+
     private ProductDetailDto assembleProductDetailVo(Product product) {
         ProductDetailDto productDetailDto = new ProductDetailDto();
         productDetailDto.setProductId(product.getProductId())
@@ -120,6 +210,7 @@ public class ProductServiceImpl implements IProductService {
                 .setName(product.getName())
                 .setStatus(product.getStatus())
                 .setStock(product.getStock())
+                .setCreatedBy(product.getCreatedBy())
                 .setImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix", "http://img.happyecit.com/"));
 
         Category category = categoryMapper.selectByPrimaryKey(product.getCategoryId());
@@ -153,9 +244,7 @@ public class ProductServiceImpl implements IProductService {
     }
 
 
-
-
-    public ResponseData<PageInfo> getProductList(Long userId,int pageNum, int pageSize) {
+    public ResponseData<PageInfo> getProductList(Long userId, int pageNum, int pageSize) {
         //startPage--start
         //填充自己的sql查询逻辑
         //pageHelper-收尾
@@ -202,7 +291,7 @@ public class ProductServiceImpl implements IProductService {
     }
 
 
-    public ResponseData<ProductDetailDto> getProductDetail(Integer productId) {
+    public ResponseData<ProductDetailDto> getProductDetail(Long userId,Integer productId) {
         if (productId == null) {
             return ResponseData.fail(ResponseCode.ILLEGAL_ARGUMENT, "ILLEGAL_ARGUMENT");
         }
@@ -214,11 +303,31 @@ public class ProductServiceImpl implements IProductService {
             return ResponseData.fail("产品已下架或者删除");
         }
         ProductDetailDto productDetailDto = assembleProductDetailVo(product);
+        //验证是否是本人创建的产品
+        if (productDetailDto.getCreatedBy()==userId)
+        {
+            productDetailDto.setMine(true);
+        }
+        else{
+            productDetailDto.setMine(false);
+        }
         return ResponseData.success(productDetailDto);
     }
 
 
-    public ResponseData<PageInfo> getProductByKeywordCategory(String keyword, Integer categoryId, int pageNum, int pageSize, String orderBy) {
+    /**
+     * 加权限控制
+     *
+     * @param userId
+     * @param isMine     Y - 查询本人产品 N - 查询非本人产品
+     * @param keyword
+     * @param categoryId
+     * @param pageNum
+     * @param pageSize
+     * @param orderBy
+     * @return
+     */
+    public ResponseData<PageInfo> getProductByKeywordCategory(Long userId, String isMine, String keyword, Integer categoryId, int pageNum, int pageSize, String orderBy) {
         if (StringUtils.isBlank(keyword) && categoryId == null) {
             return ResponseData.fail(ResponseCode.ILLEGAL_ARGUMENT, "ILLEGAL_ARGUMENT");
         }
@@ -247,7 +356,15 @@ public class ProductServiceImpl implements IProductService {
                 PageHelper.orderBy(orderByArray[0] + " " + orderByArray[1]);
             }
         }
-        List<Product> productList = productMapper.selectByNameAndCategoryIds(StringUtils.isBlank(keyword) ? null : keyword, categoryIdList.size() == 0 ? null : categoryIdList);
+        List<Product> productList;
+        //查找非本人的商品
+        if (userId != null && isMine != null) {
+            productList = productMapper.selectByNameAndCategoryIdsWithWho(userId, isMine, StringUtils.isBlank(keyword) ? null : keyword, categoryIdList.size() == 0 ? null : categoryIdList);
+
+        } else {
+            productList = productMapper.selectByNameAndCategoryIds(StringUtils.isBlank(keyword) ? null : keyword, categoryIdList.size() == 0 ? null : categoryIdList);
+
+        }
 
         List<ProductListDto> productListVoList = Lists.newArrayList();
         for (Product product : productList) {

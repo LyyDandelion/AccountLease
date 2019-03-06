@@ -46,6 +46,19 @@ public class DateTimeUtil {
         return dateTime.toString(STANDARD_FORMAT);
     }
 
+    /**
+     * 增加时长
+     * @param date
+     * @param hour
+     * @return
+     */
+    public static Date addTime(Date date,int hour)
+    {
+        //秒
+        long time =date.getTime()/1000+hour*3600;
+        String str= dateToStr(new Date(time*1000));
+        return strToDate(str);
+    }
 
 
 
@@ -54,6 +67,5 @@ public class DateTimeUtil {
         System.out.println(DateTimeUtil.strToDate("2010-01-01 11:11:11","yyyy-MM-dd HH:mm:ss"));
 
     }
-
 
 }

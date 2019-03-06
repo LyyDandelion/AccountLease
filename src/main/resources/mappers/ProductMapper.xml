@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ecit.dao.ProductMapper">
-  <resultMap id="BaseResultMap" type="com.ecit.bean.Product">
-    <constructor>
-      <idArg column="product_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="category_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="subtitle" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="main_image" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="sub_images" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="detail" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
-      <arg column="stock" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="created_by" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="creation_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="last_updated_by" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="last_update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="account" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
-    </constructor>
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.ecit.bean.Product">
+        <constructor>
+            <idArg column="product_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="category_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="subtitle" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="main_image" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="sub_images" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="detail" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="price" javaType="java.math.BigDecimal" jdbcType="DECIMAL"/>
+            <arg column="stock" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="created_by" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="creation_date" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="last_updated_by" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="last_update_date" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="account" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
     product_id, category_id, name, subtitle, main_image, sub_images, detail, price, stock, 
     status, created_by, creation_date, last_updated_by, last_update_date, account, password
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from ecit_product
-    where product_id = #{productId,jdbcType=INTEGER}
-  </select>
-  <select id="selectByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from ecit_product
-    where created_by = #{userId}
-  </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ecit_product
+        where product_id = #{productId,jdbcType=INTEGER}
+    </select>
+    <select id="selectByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ecit_product
+        where created_by = #{userId}
+    </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from ecit_product
     where product_id = #{productId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ecit.bean.Product" useGeneratedKeys="true" keyProperty="product_id">
+    <insert id="insert" parameterType="com.ecit.bean.Product" useGeneratedKeys="true" keyProperty="product_id">
     insert into ecit_product (product_id, category_id, name, 
       subtitle, main_image, sub_images, 
       detail, price, stock, 
@@ -56,161 +56,161 @@
       #{lastUpdatedBy,jdbcType=BIGINT}, now(), #{account,jdbcType=VARCHAR},
       #{password,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecit.bean.Product">
-    insert into ecit_product
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="productId != null">
-        product_id,
-      </if>
-      <if test="categoryId != null">
-        category_id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="subtitle != null">
-        subtitle,
-      </if>
-      <if test="mainImage != null">
-        main_image,
-      </if>
-      <if test="subImages != null">
-        sub_images,
-      </if>
-      <if test="detail != null">
-        detail,
-      </if>
-      <if test="price != null">
-        price,
-      </if>
-      <if test="stock != null">
-        stock,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="createdBy != null">
-        created_by,
-      </if>
-      <if test="creationDate != null">
-        creation_date,
-      </if>
-      <if test="lastUpdatedBy != null">
-        last_updated_by,
-      </if>
-      <if test="lastUpdateDate != null">
-        last_update_date,
-      </if>
-      <if test="account != null">
-        account,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="productId != null">
-        #{productId,jdbcType=INTEGER},
-      </if>
-      <if test="categoryId != null">
-        #{categoryId,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="subtitle != null">
-        #{subtitle,jdbcType=VARCHAR},
-      </if>
-      <if test="mainImage != null">
-        #{mainImage,jdbcType=VARCHAR},
-      </if>
-      <if test="subImages != null">
-        #{subImages,jdbcType=VARCHAR},
-      </if>
-      <if test="detail != null">
-        #{detail,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null">
-        #{price,jdbcType=DECIMAL},
-      </if>
-      <if test="stock != null">
-        #{stock,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createdBy != null">
-        #{createdBy,jdbcType=BIGINT},
-      </if>
-      <if test="creationDate != null">
-        #{creationDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastUpdatedBy != null">
-        #{lastUpdatedBy,jdbcType=BIGINT},
-      </if>
-      <if test="lastUpdateDate != null">
-        #{lastUpdateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="account != null">
-        #{account,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecit.bean.Product">
-    update ecit_product
-    <set>
-      <if test="categoryId != null">
-        category_id = #{categoryId,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="subtitle != null">
-        subtitle = #{subtitle,jdbcType=VARCHAR},
-      </if>
-      <if test="mainImage != null">
-        main_image = #{mainImage,jdbcType=VARCHAR},
-      </if>
-      <if test="subImages != null">
-        sub_images = #{subImages,jdbcType=VARCHAR},
-      </if>
-      <if test="detail != null">
-        detail = #{detail,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null">
-        price = #{price,jdbcType=DECIMAL},
-      </if>
-      <if test="stock != null">
-        stock = #{stock,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createdBy != null">
-        created_by = #{createdBy,jdbcType=BIGINT},
-      </if>
-      <if test="creationDate != null">
-        creation_date = #{creationDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastUpdatedBy != null">
-        last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
-      </if>
-      <if test="lastUpdateDate != null">
-        last_update_date = now(),
-      </if>
-      <if test="account != null">
-        account = #{account,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where product_id = #{productId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecit.bean.Product">
+    <insert id="insertSelective" parameterType="com.ecit.bean.Product">
+        insert into ecit_product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="categoryId != null">
+                category_id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="subtitle != null">
+                subtitle,
+            </if>
+            <if test="mainImage != null">
+                main_image,
+            </if>
+            <if test="subImages != null">
+                sub_images,
+            </if>
+            <if test="detail != null">
+                detail,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="stock != null">
+                stock,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createdBy != null">
+                created_by,
+            </if>
+            <if test="creationDate != null">
+                creation_date,
+            </if>
+            <if test="lastUpdatedBy != null">
+                last_updated_by,
+            </if>
+            <if test="lastUpdateDate != null">
+                last_update_date,
+            </if>
+            <if test="account != null">
+                account,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productId != null">
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="categoryId != null">
+                #{categoryId,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="subtitle != null">
+                #{subtitle,jdbcType=VARCHAR},
+            </if>
+            <if test="mainImage != null">
+                #{mainImage,jdbcType=VARCHAR},
+            </if>
+            <if test="subImages != null">
+                #{subImages,jdbcType=VARCHAR},
+            </if>
+            <if test="detail != null">
+                #{detail,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="stock != null">
+                #{stock,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy,jdbcType=BIGINT},
+            </if>
+            <if test="creationDate != null">
+                #{creationDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdatedBy != null">
+                #{lastUpdatedBy,jdbcType=BIGINT},
+            </if>
+            <if test="lastUpdateDate != null">
+                #{lastUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="account != null">
+                #{account,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ecit.bean.Product">
+        update ecit_product
+        <set>
+            <if test="categoryId != null">
+                category_id = #{categoryId,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="subtitle != null">
+                subtitle = #{subtitle,jdbcType=VARCHAR},
+            </if>
+            <if test="mainImage != null">
+                main_image = #{mainImage,jdbcType=VARCHAR},
+            </if>
+            <if test="subImages != null">
+                sub_images = #{subImages,jdbcType=VARCHAR},
+            </if>
+            <if test="detail != null">
+                detail = #{detail,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="stock != null">
+                stock = #{stock,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createdBy != null">
+                created_by = #{createdBy,jdbcType=BIGINT},
+            </if>
+            <if test="creationDate != null">
+                creation_date = #{creationDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdatedBy != null">
+                last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
+            </if>
+            <if test="lastUpdateDate != null">
+                last_update_date = now(),
+            </if>
+            <if test="account != null">
+                account = #{account,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where product_id = #{productId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ecit.bean.Product">
     update ecit_product
     set category_id = #{categoryId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
@@ -230,48 +230,63 @@
     where product_id = #{productId,jdbcType=INTEGER}
   </update>
 
-  <select id="selectList" resultMap="BaseResultMap" >
-    SELECT
-    <include refid="Base_Column_List"/>
-    from ecit_product
-    ORDER BY product_id asc
-  </select>
+    <select id="selectList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from ecit_product
+        ORDER BY product_id asc
+    </select>
 
 
-  <select id="selectByNameAndProductId" resultMap="BaseResultMap" parameterType="map">
-    SELECT
-    <include refid="Base_Column_List"/>
-    from ecit_product
-    <where>
-      <if test="productName != null">
-        and name like #{productName}
-      </if>
-      <if test="productId != null">
-        and product_id = #{productId}
-      </if>
-    </where>
-  </select>
+    <select id="selectByNameAndProductId" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from ecit_product
+        <where>
+            <if test="productName != null">
+                and name like #{productName}
+            </if>
+            <if test="productId != null">
+                and product_id = #{productId}
+            </if>
+        </where>
+    </select>
 
-  <select id="selectByNameAndCategoryIds" resultMap="BaseResultMap" parameterType="map">
-    SELECT
-    <include refid="Base_Column_List"></include>
-    from ecit_product
-    where status = 1
-    <if test="productName != null">
-      and name like #{productName}
-    </if>
-    <if test="categoryIdList != null" >
-      and category_id in
-      <foreach item="item" index="index" open="(" separator="," close=")" collection="categoryIdList">
-        #{item}
-      </foreach>
-    </if>
-  </select>
+    <select id="selectByNameAndCategoryIds" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        from ecit_product
+        where status = 1
+        <if test="productName != null">
+            and name like #{productName}
+        </if>
+        <if test="categoryIdList != null">
+            and category_id in
+            <foreach item="item" index="index" open="(" separator="," close=")" collection="categoryIdList">
+                #{item}
+            </foreach>
+        </if>
+    </select>
 
-  <!--<select id="getAccountInfo" resultMap="BaseResultMap" parameterType="map">-->
-    <!--select-->
-      <!--account,password-->
-    <!--from-->
-      <!--ecit_product-->
-  <!--</select>-->
+    <select id="selectByNameAndCategoryIdsWithWho" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        from ecit_product
+        where status = 1
+        <if test="userId!=null and isMine=='Y'">
+            and created_by=#{userId}
+        </if>
+        <if test="userId!=null and isMine=='N'">
+            and created_by &lt;&gt; #{userId}
+        </if>
+        <if test="productName != null">
+            and name like #{productName}
+        </if>
+        <if test="categoryIdList != null">
+            and category_id in
+            <foreach item="item" index="index" open="(" separator="," close=")" collection="categoryIdList">
+                #{item}
+            </foreach>
+        </if>
+    </select>
 </mapper>

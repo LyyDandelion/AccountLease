@@ -46,6 +46,11 @@
 
 
 </div>
+
+<div class="pass_">
+
+</div>
+
 <style type="text/css">
     .order-detail ul, li {
         list-style: none;
@@ -65,44 +70,44 @@
             success: function (data) {
                 log(data)
                 if (data.success) {
-                    var info=data.data;
-                    for(var i=0;i<info.size;i++)
-                    {
-                        var status=info.list[i].status;
-                        var subtitle=info.list[i].subtitle
-                        var imageHost=info.list[i].imageHost;
-                        var mainImage=info.list[i].mainImage;
-                        var img_url=imageHost+mainImage;
-                        var productId=info.list[i].productId;
-                        if(status==1)
-                        {
-                            btn_op_name="下架"
-                            btn_op_id="set_off_shelf";
-                            btn_op_name_edit="改密"
-                            btn_edit_id="up_pass"
+                    var info = data.data;
+                    for (var i = 0; i < info.size; i++) {
+                        var status = info.list[i].status;
+                        var subtitle = info.list[i].subtitle;
+                        var name=info.list[i].name;
+                        var imageHost = info.list[i].imageHost;
+                        var mainImage = info.list[i].mainImage;
+                        var img_url = imageHost + mainImage;
+                        var productId = info.list[i].productId;
+                        var params = [productId, status];
+
+                        if (status == 1) {
+                            btn_op_name = "下架"
+                            btn_op_id=concat_params("set_off_shelf", params);
+                            btn_op_name_edit = "改密"
+                            btn_edit_id = concat_params("up_pass",params);
                         }
-                        else if(status==2){
-                            btn_op_name="上架"
-                            btn_op_id="set_on_sale";
-                            btn_op_name_edit="编辑"
-                            btn_edit_id="edit"
+                        else if (status == 2) {
+                            btn_op_name = "上架"
+                            btn_op_id = concat_params("set_on_sale",params);
+                            btn_op_name_edit = "编辑"
+                            btn_edit_id = concat_params("edit",params);
                         }
-                         else if(status==4)
-                        {
-                            btn_op_name="取消订单"
-                            btn_op_id="cancel_order";
-                            btn_op_name_edit="发送提示"
-                            btn_edit_id="send_tip"
+                        else if (status == 4) {
+                            btn_op_name = "取消订单"
+                            btn_op_id = concat_params("cancel_order",params);
+                            btn_op_name_edit = "发送提示"
+                            btn_edit_id = concat_params("send_tip",params);
                         }
 
-                        var el="<div class=\"row\">\n" +
+                        var el = "<div class=\"row\">\n" +
                             "            <div class=\"col-md-2\"></div>\n" +
                             "            <div class=\"col-md-8\" style=\"border-bottom-style: solid;border-bottom-color: #5cb85c\"></div>\n" +
                             "        </div>\n" +
                             "        <div class=\"row\">\n" +
                             "            <div class=\"col-md-2\"></div>\n" +
-                            "            <div class=\"col-md-4\"><span id='productId' value='"+productId+"'>商品ID"+productId+"</span></div>\n" +
-                            "            <div class=\"col-md-2\">状态："+status+"</div>\n" +
+                            "            <div class=\"col-md-4\"><span class='productId' value='" + productId + "'>商品ID" + productId + "</span></div>\n" +
+                            "            <div class=\"col-md-2\">状态：" + status + "</div>\n" +
                             "        </div>\n" +
                             "        <div class=\"row\">\n" +
                             "            <div class=\"col-md-2\"></div>\n" +
@@ -110,17 +115,17 @@
                             "        </div>\n" +
                             "        <div class=\"row\">\n" +
                             "            <div class=\"col-md-2\"></div>\n" +
-                            "            <div class=\"col-md-3\"><img class='img-thumbnail' src='"+img_url+"'/></div>" +
-                            "            <div class=\"col-md-4\">"+subtitle+"</div>\n" +
-                            "        </div>\n" ;
-                        var op_div= "        <div class=\"row\">\n" +
+                            "            <div class=\"col-md-3\"><img class='img-thumbnail' src='" + img_url + "'/></div>" +
+                            "            <div class=\"col-md-4\">" + name + "</div>\n" +
+                            "        </div>\n";
+                        var op_div = "        <div class=\"row\">\n" +
                             "            <div class=\"col-md-4\"></div>\n" +
                             "            <div class=\"col-md-3\">\n" +
                             "\n" +
-                            "                <button id='"+btn_op_id+"' class=\"btn btn-primary btn_op_name\">"+btn_op_name+"</button>\n" +
+                            "                <button id='" + btn_op_id + "' class=\"btn btn-primary btn_op_name\">" + btn_op_name + "</button>\n" +
                             "            </div>\n" +
                             "            <div class=\"col-md-3\">\n" +
-                            "                <button id='"+btn_edit_id+"' class=\"btn btn-info btn_edit\">"+btn_op_name_edit+"</button>\n" +
+                            "                <button id='" + btn_edit_id + "' class=\"btn btn-info btn_op_name\">" + btn_op_name_edit + "</button>\n" +
                             "            </div>\n" +
                             "            <div class=\"col-md-2\"></div>\n" +
                             "        </div>";
@@ -130,82 +135,123 @@
                 }
             }
         })
-        $("body").on("click",".btn_op_name",function (data) {
-            var id= $(".btn_op_name").attr("id");
+        $("body").on("click", ".btn_op_name", function (data) {
+            var params = this.id.split("-");
+            var id = params[0];
+            var productId = params[1];
 
-            if(id=="set_off_shelf")//下架
+            if (id == "set_off_shelf")//下架
             {
                 $.ajax({
-                    url:"/back/product/set_sale_status.do",
-                    type:"post",
-                    data:{
-                        productId:$("#productId").attr("value"),
-                        status:2
+                    url: "/back/product/set_sale_status.do",
+                    type: "post",
+                    data: {
+                        productId: productId,
+                        status: 2
                     },
-                    success :function(data) {
-                        if(data.success)
-                        {
+                    success: function (data) {
+                        if (data.success) {
                             alert("产品已下架");
                             window.location.reload();
                         }
-                        else
-                        {
-                            alert("error:"+data.msg);
+                        else {
+                            alert("error:" + data.msg);
                         }
                     }
                 })
             }
-            else if(id=="up_pass")//改密
-
+            else if (id == "up_pass")//改密
             {
+                var password = prompt("请输入新密码");
 
-            }
-            else if(id=="set_on_sale") //上架
-            {
                 $.ajax({
-                    url:"/back/product/set_sale_status.do",
-                    type:"post",
-                    data:{
-                        productId:$("#productId").attr("value"),
-                        status:1
+                    url: "/back/product/update_password.do",
+                    type: "post",
+                    data: {
+                        productId: productId,
+                        password: password
                     },
-                    success :function(data) {
-                        if(data.success)
-                        {
+                    success: function (data) {
+                        log(data);
+                        alert(data.msg)
+                    }
+                })
+            }
+            else if (id == "set_on_sale") //上架
+            {
+
+                $.ajax({
+                    url: "/back/product/set_sale_status.do",
+                    type: "post",
+                    data: {
+                        productId: productId,
+                        status: 1
+                    },
+                    success: function (data) {
+                        if (data.success) {
                             alert("产品已上架");
                             window.location.reload();
                         }
-                        else
-                        {
-                            alert("error:"+data.msg);
+                        else {
+                            alert("error:" + data.msg);
                         }
                     }
                 })
             }
-            else if(id=="edit")//编辑
+            else if (id == "edit")//编辑
             {
-
+                $(location).prop("href", "product_add_king_honor.jsp?productId="+productId);
             }
-            else if(id=="cancel_order")//取消订单
+            else if (id == "cancel_order")//取消订单
             {
-
-            }else if(id=="send_tip")//发送提示
+                $.ajax({
+                    url: "/back/product/set_sale_status.do",
+                    type: "post",
+                    data: {
+                        productId: productId,
+                        status: 2
+                    },
+                    success: function (data) {
+                        if (data.success) {
+                            alert("订单已取消，同时商品已下架");
+                            window.location.reload();
+                        }
+                        else {
+                            //todo
+                            alert("error:" + data.msg);
+                        }
+                    }
+                })
+            } else if (id == "send_tip")//发送提示
             {
-
+                //todo
             }
-            else{
+            else {
                 alert("error");
+                //todo
             }
 
         })
 
-
-
-
-
-
-
-
+        /**
+         * 拼接字符
+         * @param name
+         * @param params
+         * @param split
+         * @returns {*}
+         */
+        function concat_params(name, params, split) {
+            if(split==null)
+            {
+                split="-";
+            }
+            var str = name;
+            for (var i = 0; i < params.length; i++) {
+                str += split;
+                str += params[i];
+            }
+           return  str;
+        }
 
 
 

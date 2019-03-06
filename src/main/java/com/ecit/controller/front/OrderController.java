@@ -4,6 +4,7 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.internal.util.StringUtils;
 import com.alipay.demo.trade.config.Configs;
+import com.ecit.dto.OrderDto;
 import com.google.common.collect.Maps;
 import com.ecit.common.Const;
 import com.ecit.common.ResponseCode;
@@ -169,9 +170,29 @@ public class OrderController {
         //
         ResponseData ResponseData = iOrderService.aliCallback(params);
         if(ResponseData.isSuccess()){
+
             return Const.AlipayCallback.RESPONSE_SUCCESS;
         }
         return Const.AlipayCallback.RESPONSE_FAILED;
+    }
+
+    /**
+     * 更新订单信息-
+     * @desc 支付成功后，更新必要信息，比如，结束时间
+     * @param session
+     * @param orderNo
+     * @return
+     */
+    @RequestMapping(value = "update_order_info.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseData updateOrderInfo(HttpSession session,Long orderNo)
+    {
+        User user=(User)session.getAttribute(Const.THIS_USER);
+        if(user==null)
+        {
+            return ResponseData.fail(ResponseCode.NEED_LOGIN,"NEED_LOGIN");
+        }
+        return iOrderService.updateOrderInfo(user.getUserId(),orderNo);
     }
 
 

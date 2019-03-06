@@ -63,8 +63,8 @@
 
 <script>
     $(document).ready(function () {
-        var productId = localStorage.getItem("productId");
-        var quantity = localStorage.getItem("quantity");
+        var productId = sessionStorage.getItem("productId");
+        var quantity = sessionStorage.getItem("quantity");
         var pay_info = {
             productId: productId,
             quantity: quantity
@@ -100,8 +100,6 @@
                                 log(data)
                             }
                         })
-
-
                     });
                     setInterval(function () {
                         $.ajax({
@@ -113,13 +111,22 @@
                                 {
                                     var info=data.data;
                                     if(info){
-                                        alert("支付成功！");
+                                        //更新信息
+                                        $.ajax({
+                                            url:"/order/update_order_info.do",
+                                            data:request_pay,
+                                            success:function(data)
+                                            {
+                                                log(data);
+                                                alert("支付成功");
+                                            }
+                                        });
                                         $(location).prop("href","result.jsp?_ecit_type=payment_success");
                                     }
                                 }
                             }
                         })
-                    }, 3000);
+                    }, 1000);
 
                 }
                 else {

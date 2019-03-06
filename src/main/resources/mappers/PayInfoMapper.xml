@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecit.dao.PayInfoMapper">
+  <resultMap id="BaseResultMap" type="com.ecit.bean.PayInfo">
+    <constructor>
+      <idArg column="pay_info_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="order_no" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="pay_platform" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="platform_number" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="platform_status" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="created_by" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="creation_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="last_updated_by" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="last_update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    pay_info_id, user_id, order_no, pay_platform, platform_number, platform_status, created_by, 
+    creation_date, last_updated_by, last_update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ecit_pay_info
+    where pay_info_id = #{payInfoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ecit_pay_info
+    where pay_info_id = #{payInfoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ecit.bean.PayInfo"  useGeneratedKeys="true" keyProperty="pay_info_id">
+    insert into ecit_pay_info (pay_info_id, user_id, order_no, 
+      pay_platform, platform_number, platform_status, 
+      created_by, creation_date, last_updated_by, 
+      last_update_date)
+    values (#{payInfoId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderNo,jdbcType=BIGINT}, 
+      #{payPlatform,jdbcType=INTEGER}, #{platformNumber,jdbcType=VARCHAR}, #{platformStatus,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=BIGINT}, now(), #{lastUpdatedBy,jdbcType=BIGINT},
+      now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecit.bean.PayInfo">
+    insert into ecit_pay_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="payInfoId != null">
+        pay_info_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="payPlatform != null">
+        pay_platform,
+      </if>
+      <if test="platformNumber != null">
+        platform_number,
+      </if>
+      <if test="platformStatus != null">
+        platform_status,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="payInfoId != null">
+        #{payInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="payPlatform != null">
+        #{payPlatform,jdbcType=INTEGER},
+      </if>
+      <if test="platformNumber != null">
+        #{platformNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="platformStatus != null">
+        #{platformStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecit.bean.PayInfo">
+    update ecit_pay_info
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="payPlatform != null">
+        pay_platform = #{payPlatform,jdbcType=INTEGER},
+      </if>
+      <if test="platformNumber != null">
+        platform_number = #{platformNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="platformStatus != null">
+        platform_status = #{platformStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = now(),
+      </if>
+    </set>
+    where pay_info_id = #{payInfoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecit.bean.PayInfo">
+    update ecit_pay_info
+    set user_id = #{userId,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=BIGINT},
+      pay_platform = #{payPlatform,jdbcType=INTEGER},
+      platform_number = #{platformNumber,jdbcType=VARCHAR},
+      platform_status = #{platformStatus,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=BIGINT},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
+      last_update_date = now()
+    where pay_info_id = #{payInfoId,jdbcType=INTEGER}
+  </update>
+</mapper>

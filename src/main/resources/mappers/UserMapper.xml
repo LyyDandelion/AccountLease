@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecit.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.ecit.bean.User">
+    <constructor>
+      <idArg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="username" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="question" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="answer" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="role" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="created_by" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="creation_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="last_updated_by" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="last_update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, username, password, email, phone, question, answer, role, created_by, creation_date, 
+    last_updated_by, last_update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ecit_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ecit_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ecit.bean.User" useGeneratedKeys="true" keyProperty="user_id">
+    insert into ecit_user (user_id, username, password,
+      email, phone, question, 
+      answer, role, created_by, 
+      creation_date, last_updated_by, last_update_date
+      )
+    values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
+      #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, #{createdBy,jdbcType=BIGINT}, 
+      now(), #{lastUpdatedBy,jdbcType=BIGINT}, now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecit.bean.User">
+    insert into ecit_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="question != null">
+        question,
+      </if>
+      <if test="answer != null">
+        answer,
+      </if>
+      <if test="role != null">
+        role,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null">
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecit.bean.User">
+    update ecit_user
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null">
+        question = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        role = #{role,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="1==1">
+        last_update_date = now(),
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecit.bean.User">
+    update ecit_user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      question = #{question,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      role = #{role,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=BIGINT},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
+      last_update_date = now()
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+
+  <select id="checkUsername" resultType="int" parameterType="string" >
+    select count(1) from ecit_user
+    where username = #{username}
+  </select>
+
+  <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List" />
+    from ecit_user
+    where username = #{username}
+    and password = #{password}
+  </select>
+
+  <select id="checkEmail" resultType="int" parameterType="string" >
+    select count(1) from ecit_user
+    where email = #{email}
+  </select>
+
+
+
+
+  <select id="selectQuestionByUsername" resultType="string" parameterType="string">
+    select
+    question
+    from ecit_user
+    where username = #{username}
+  </select>
+
+  <select id="checkAnswer" resultType="int" parameterType="map">
+    SELECT
+    count(1)
+    from ecit_user
+    where username=#{username}
+    and question = #{question}
+    and answer = #{answer}
+  </select>
+
+  <update id="updatePasswordByUsername" parameterType="map">
+    update ecit_user
+    SET password = #{passwordNew},last_update_date = now()
+    where username = #{username}
+  </update>
+
+  <select id="checkPassword" resultType="int" parameterType="map">
+    SELECT
+    count(1)
+    from ecit_user
+    where password = #{password}
+    and user_id = #{userId}
+  </select>
+
+
+  <select id="checkEmailByUserId" resultType="int" parameterType="map">
+    select count(1) from ecit_user
+    where email = #{email}
+    and user_id != #{userId}
+  </select>
+
+</mapper>

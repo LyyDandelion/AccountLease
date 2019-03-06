@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecit.dao.CategoryMapper">
+  <resultMap id="BaseResultMap" type="com.ecit.bean.Category">
+    <constructor>
+      <idArg column="category_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="parent_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="status" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sort_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="created_by" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="creation_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="last_updated_by" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="last_update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    category_id, parent_id,code, name, status, sort_order, created_by, creation_date, last_updated_by,
+    last_update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ecit_category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ecit_category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ecit.bean.Category" useGeneratedKeys="true" keyProperty="category_id">
+    insert into ecit_category (category_id, parent_id,code, name,
+      status, sort_order, created_by, 
+      creation_date, last_updated_by, last_update_date
+      )
+    values (#{categoryId,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+      #{status,jdbcType=VARCHAR}, #{sortOrder,jdbcType=INTEGER}, #{createdBy,jdbcType=BIGINT}, 
+      now(), #{lastUpdatedBy,jdbcType=BIGINT}, now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecit.bean.Category">
+    insert into ecit_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="sortOrder != null">
+        sort_order,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null">
+        #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecit.bean.Category">
+    update ecit_category
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null">
+        sort_order = #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = now(),
+      </if>
+    </set>
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecit.bean.Category">
+    update ecit_category
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      code=#{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      sort_order = #{sortOrder,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=BIGINT},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
+      last_update_date = now()
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectCategoryChildrenByParentId" resultMap="BaseResultMap" parameterType="int">
+    select
+    <include refid="Base_Column_List"/>
+    from ecit_category
+    where parent_id = #{parentId}
+  </select>
+
+  <select id="getCategoryByCode" resultMap="BaseResultMap" parameterType="string">
+    select
+    <include refid="Base_Column_List"/>
+    from ecit_category
+    where code = #{code}
+
+  </select>
+</mapper>

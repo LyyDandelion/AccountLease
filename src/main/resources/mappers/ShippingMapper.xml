@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecit.dao.ShippingMapper">
+  <resultMap id="BaseResultMap" type="com.ecit.bean.Shipping">
+    <constructor>
+      <idArg column="shipping_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="receiver_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_province" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_city" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_district" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receiver_zip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="created_by" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="creation_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="last_updated_by" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="last_update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    shipping_id, user_id, receiver_name, receiver_phone, receiver_mobile, receiver_province, 
+    receiver_city, receiver_district, receiver_address, receiver_zip, created_by, creation_date, 
+    last_updated_by, last_update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ecit_shipping
+    where shipping_id = #{shippingId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ecit_shipping
+    where shipping_id = #{shippingId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ecit.bean.Shipping"  useGeneratedKeys="true" keyProperty="shipping_id">
+    insert into ecit_shipping (shipping_id, user_id, receiver_name, 
+      receiver_phone, receiver_mobile, receiver_province, 
+      receiver_city, receiver_district, receiver_address, 
+      receiver_zip, created_by, creation_date, 
+      last_updated_by, last_update_date)
+    values (#{shippingId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR}, 
+      #{receiverPhone,jdbcType=VARCHAR}, #{receiverMobile,jdbcType=VARCHAR}, #{receiverProvince,jdbcType=VARCHAR}, 
+      #{receiverCity,jdbcType=VARCHAR}, #{receiverDistrict,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, 
+      #{receiverZip,jdbcType=VARCHAR}, #{createdBy,jdbcType=BIGINT}, now(),
+      #{lastUpdatedBy,jdbcType=BIGINT}, now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecit.bean.Shipping">
+    insert into ecit_shipping
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shippingId != null">
+        shipping_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="receiverName != null">
+        receiver_name,
+      </if>
+      <if test="receiverPhone != null">
+        receiver_phone,
+      </if>
+      <if test="receiverMobile != null">
+        receiver_mobile,
+      </if>
+      <if test="receiverProvince != null">
+        receiver_province,
+      </if>
+      <if test="receiverCity != null">
+        receiver_city,
+      </if>
+      <if test="receiverDistrict != null">
+        receiver_district,
+      </if>
+      <if test="receiverAddress != null">
+        receiver_address,
+      </if>
+      <if test="receiverZip != null">
+        receiver_zip,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shippingId != null">
+        #{shippingId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="receiverName != null">
+        #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null">
+        #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverMobile != null">
+        #{receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverProvince != null">
+        #{receiverProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCity != null">
+        #{receiverCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverDistrict != null">
+        #{receiverDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null">
+        #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverZip != null">
+        #{receiverZip,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecit.bean.Shipping">
+    update ecit_shipping
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="receiverName != null">
+        receiver_name = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null">
+        receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverMobile != null">
+        receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverProvince != null">
+        receiver_province = #{receiverProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCity != null">
+        receiver_city = #{receiverCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverDistrict != null">
+        receiver_district = #{receiverDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null">
+        receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverZip != null">
+        receiver_zip = #{receiverZip,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = now(),
+      </if>
+    </set>
+    where shipping_id = #{shippingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecit.bean.Shipping">
+    update ecit_shipping
+    set user_id = #{userId,jdbcType=INTEGER},
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      receiver_province = #{receiverProvince,jdbcType=VARCHAR},
+      receiver_city = #{receiverCity,jdbcType=VARCHAR},
+      receiver_district = #{receiverDistrict,jdbcType=VARCHAR},
+      receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      receiver_zip = #{receiverZip,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=BIGINT},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
+      last_update_date = now()
+    where shipping_id = #{shippingId,jdbcType=INTEGER}
+  </update>
+
+  <delete id="deleteByShippingIdUserId" parameterType="map">
+    DELETE  FROM  ecit_shipping
+    where shipping_id = #{shippingId}
+    and user_id = #{userId}
+  </delete>
+
+  <update id="updateByShipping" parameterType="com.ecit.bean.Shipping">
+    update ecit_shipping
+    set
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      receiver_province = #{receiverProvince,jdbcType=VARCHAR},
+      receiver_city = #{receiverCity,jdbcType=VARCHAR},
+      receiver_district = #{receiverDistrict,jdbcType=VARCHAR},
+      receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      receiver_zip = #{receiverZip,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_date = now()
+    where shipping_id = #{id,jdbcType=INTEGER}
+    and user_id = #{userId,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectByShippingIdUserId" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from ecit_shipping
+    where shipping_id = #{shippingId}
+    and user_id = #{userId}
+  </select>
+
+
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from ecit_shipping
+    where user_id = #{userId}
+  </select>
+
+
+
+</mapper>

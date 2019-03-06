@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecit.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.ecit.bean.Order">
+    <constructor>
+      <idArg column="order_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="order_no"  javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="shipping_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="payment" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="payment_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="postage" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="order_status" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="payment_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="send_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="end_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="close_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="created_by" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="creation_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="last_updated_by" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="last_update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+    <resultMap id="res" type="com.ecit.bean.Order">
+        <result column="order_id" property="orderId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result column="order_no" property="orderNo"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result column="user_id"  property="userId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result column="shipping_id" property="shippingId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result column="payment" property="payment" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+        <result column="payment_type" property="paymentType" javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result column="postage" property="postage" javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result column="order_status" property="orderStatus" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="payment_time" property="paymentTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+        <result column="send_time" property="sendTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+        <result column="end_time"  property="endTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+        <result column="close_time" property="closeTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+        <result column="created_by" property="createdBy" javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result column="creation_date" property="creationDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+        <result column="last_updated_by" property="lastUpdatedBy" javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result column="last_update_date" property="lastUpdateDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </resultMap>
+  <sql id="Base_Column_List">
+    order_id, order_no, user_id, shipping_id, payment, payment_type, postage, order_status, 
+    payment_time, send_time, end_time, close_time, created_by, creation_date, last_updated_by, 
+    last_update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ecit_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ecit_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ecit.bean.Order" useGeneratedKeys="true" keyProperty="order_id">
+    insert into ecit_order (order_id, order_no, user_id, 
+      shipping_id, payment, payment_type, 
+      postage, order_status, payment_time, 
+      send_time, end_time, close_time, 
+      created_by, creation_date, last_updated_by, 
+      last_update_date)
+    values (#{orderId,jdbcType=INTEGER}, #{orderNo,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, 
+      #{shippingId,jdbcType=INTEGER}, #{payment,jdbcType=DECIMAL}, #{paymentType,jdbcType=INTEGER}, 
+      #{postage,jdbcType=INTEGER}, #{orderStatus,jdbcType=VARCHAR}, #{paymentTime,jdbcType=TIMESTAMP}, 
+      #{sendTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{closeTime,jdbcType=TIMESTAMP}, 
+      #{createdBy,jdbcType=BIGINT}, now(), #{lastUpdatedBy,jdbcType=BIGINT},
+      now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecit.bean.Order">
+    insert into ecit_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="shippingId != null">
+        shipping_id,
+      </if>
+      <if test="payment != null">
+        payment,
+      </if>
+      <if test="paymentType != null">
+        payment_type,
+      </if>
+      <if test="postage != null">
+        postage,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="paymentTime != null">
+        payment_time,
+      </if>
+      <if test="sendTime != null">
+        send_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="closeTime != null">
+        close_time,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingId != null">
+        #{shippingId,jdbcType=INTEGER},
+      </if>
+      <if test="payment != null">
+        #{payment,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentType != null">
+        #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="postage != null">
+        #{postage,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentTime != null">
+        #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closeTime != null">
+        #{closeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecit.bean.Order">
+    update ecit_order
+    <set>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingId != null">
+        shipping_id = #{shippingId,jdbcType=INTEGER},
+      </if>
+      <if test="payment != null">
+        payment = #{payment,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentType != null">
+        payment_type = #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="postage != null">
+        postage = #{postage,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentTime != null">
+        payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null">
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closeTime != null">
+        close_time = #{closeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = now(),
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecit.bean.Order">
+    update ecit_order
+    set order_no = #{orderNo,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=INTEGER},
+      shipping_id = #{shippingId,jdbcType=INTEGER},
+      payment = #{payment,jdbcType=DECIMAL},
+      payment_type = #{paymentType,jdbcType=INTEGER},
+      postage = #{postage,jdbcType=INTEGER},
+      order_status = #{orderStatus,jdbcType=VARCHAR},
+      payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      close_time = #{closeTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=BIGINT},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
+      last_update_date =now()
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectByUserIdAndOrderNo" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    from ecit_order
+    where order_no = #{orderNo}
+    and user_id = #{userId}
+  </select>
+
+
+  <select id="selectByOrderNo" resultMap="BaseResultMap" parameterType="long">
+    SELECT
+    <include refid="Base_Column_List">
+    </include>
+    FROM  ecit_order
+    where order_no = #{orderNo}
+  </select>
+
+
+    <!--<select id="selectByUserId" resultMap="BaseResultMap" parameterType="int">-->
+        <!--SELECT-->
+        <!--<include refid="Base_Column_List"/>-->
+        <!--from ecit_order-->
+        <!--where user_id = #{userId}-->
+        <!--order by creation_date desc-->
+    <!--</select>-->
+
+    <select id="selectByUserId" resultMap="res" parameterType="int">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        from ecit_order
+        where user_id = #{userId}
+        order by creation_date desc
+    </select>
+
+    <select id="selectByUserIdAndStatus" resultMap="res" parameterType="map" >
+      SELECT
+      <include refid="Base_Column_List"></include>
+      from ecit_order
+      where user_id = #{userId}
+      and order_status = #{orderStatus}
+      order by creation_date desc
+    </select>
+
+  <select id="selectAllOrder" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from ecit_order
+    ORDER BY  creation_date desc
+  </select>
+</mapper>

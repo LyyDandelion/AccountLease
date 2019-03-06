@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecit.dao.SysCodeValueMapper">
+  <resultMap id="BaseResultMap" type="com.ecit.bean.SysCodeValue">
+    <constructor>
+      <idArg column="code_value_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="code_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="value" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="meaning" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="description" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATED_BY" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="CREATION_DATE" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="LAST_UPDATED_BY" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="LAST_UPDATE_DATE" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="ViewMap" type="com.ecit.dto.SysCodeDto">
+    <constructor>
+      <arg column="code_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="value" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="meaning" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="description" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    code_value_id, code_id, value, meaning, description, CREATED_BY, CREATION_DATE, LAST_UPDATED_BY, 
+    LAST_UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_code_value
+    where code_value_id = #{codeValueId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_code_value
+    where code_value_id = #{codeValueId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ecit.bean.SysCodeValue">
+    insert into sys_code_value (code_value_id, code_id, value, 
+      meaning, description, CREATED_BY, 
+      CREATION_DATE, LAST_UPDATED_BY, LAST_UPDATE_DATE
+      )
+    values (#{codeValueId,jdbcType=BIGINT}, #{codeId,jdbcType=BIGINT}, #{value,jdbcType=VARCHAR}, 
+      #{meaning,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createdBy,jdbcType=BIGINT}, 
+      now(), #{lastUpdatedBy,jdbcType=BIGINT}, now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecit.bean.SysCodeValue">
+    insert into sys_code_value
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="codeValueId != null">
+        code_value_id,
+      </if>
+      <if test="codeId != null">
+        code_id,
+      </if>
+      <if test="value != null">
+        value,
+      </if>
+      <if test="meaning != null">
+        meaning,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="creationDate != null">
+        CREATION_DATE,
+      </if>
+      <if test="lastUpdatedBy != null">
+        LAST_UPDATED_BY,
+      </if>
+      <if test="lastUpdateDate != null">
+        LAST_UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="codeValueId != null">
+        #{codeValueId,jdbcType=BIGINT},
+      </if>
+      <if test="codeId != null">
+        #{codeId,jdbcType=BIGINT},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="meaning != null">
+        #{meaning,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecit.bean.SysCodeValue">
+    update sys_code_value
+    <set>
+      <if test="codeId != null">
+        code_id = #{codeId,jdbcType=BIGINT},
+      </if>
+      <if test="value != null">
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="meaning != null">
+        meaning = #{meaning,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        CREATION_DATE = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        LAST_UPDATED_BY = #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        LAST_UPDATE_DATE = now(),
+      </if>
+    </set>
+    where code_value_id = #{codeValueId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecit.bean.SysCodeValue">
+    update sys_code_value
+    set code_id = #{codeId,jdbcType=BIGINT},
+      value = #{value,jdbcType=VARCHAR},
+      meaning = #{meaning,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=BIGINT},
+      CREATION_DATE = #{creationDate,jdbcType=TIMESTAMP},
+      LAST_UPDATED_BY = #{lastUpdatedBy,jdbcType=BIGINT},
+      LAST_UPDATE_DATE = now()
+    where code_value_id = #{codeValueId,jdbcType=BIGINT}
+  </update>
+
+  <!-- 获取系统代码视图 -->
+  <select id="getCodeView" parameterType="java.lang.String" resultMap="ViewMap">
+    select * from sys_code_value_v
+    <where>
+      <if test="code!=null">
+        code=#{code}
+      </if>
+    </where>
+  </select>
+
+
+</mapper>

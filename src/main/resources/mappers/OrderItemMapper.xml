@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecit.dao.OrderItemMapper">
+  <resultMap id="BaseResultMap" type="com.ecit.bean.OrderItem">
+  <constructor>
+    <idArg column="order_item_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    <arg column="order_no" javaType="java.lang.Long" jdbcType="BIGINT" />
+    <arg column="product_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    <arg column="product_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="product_image" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="current_unit_price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    <arg column="quantity" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    <arg column="total_price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    <arg column="created_by" javaType="java.lang.Long" jdbcType="BIGINT" />
+    <arg column="creation_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    <arg column="last_updated_by" javaType="java.lang.Long" jdbcType="BIGINT" />
+    <arg column="last_update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+  </constructor>
+</resultMap>
+  <resultMap id="res" type="com.ecit.bean.OrderItem">
+      <result column="order_item_id" property="orderItemId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="user_id" property="userId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="order_no" property="orderNo" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <result column="product_id" property="productId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="product_name" property="productName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="product_image" property="productImage" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="current_unit_price" property="currentUnitPrice" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result column="quantity" property="quantity" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="total_price" property="totalPrice" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <result column="created_by" property="createdBy" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <result column="creation_date" property="creationDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <result column="last_updated_by" property="lastUpdatedBy" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <result column="last_update_date" property="lastUpdateDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_item_id, user_id, order_no, product_id, product_name, product_image, current_unit_price, 
+    quantity, total_price, created_by, creation_date, last_updated_by, last_update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ecit_order_item
+    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ecit_order_item
+    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ecit.bean.OrderItem" useGeneratedKeys="true" keyProperty="order_item_id">
+    insert into ecit_order_item (order_item_id, user_id, order_no, 
+      product_id, product_name, product_image, 
+      current_unit_price, quantity, total_price, 
+      created_by, creation_date, last_updated_by, 
+      last_update_date)
+    values (#{orderItemId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderNo,jdbcType=BIGINT}, 
+      #{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{productImage,jdbcType=VARCHAR}, 
+      #{currentUnitPrice,jdbcType=DECIMAL}, #{quantity,jdbcType=INTEGER}, #{totalPrice,jdbcType=DECIMAL}, 
+      #{createdBy,jdbcType=BIGINT}, now(), #{lastUpdatedBy,jdbcType=BIGINT},
+      now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecit.bean.OrderItem">
+    insert into ecit_order_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderItemId != null">
+        order_item_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="productImage != null">
+        product_image,
+      </if>
+      <if test="currentUnitPrice != null">
+        current_unit_price,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderItemId != null">
+        #{orderItemId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productImage != null">
+        #{productImage,jdbcType=VARCHAR},
+      </if>
+      <if test="currentUnitPrice != null">
+        #{currentUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecit.bean.OrderItem">
+    update ecit_order_item
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productImage != null">
+        product_image = #{productImage,jdbcType=VARCHAR},
+      </if>
+      <if test="currentUnitPrice != null">
+        current_unit_price = #{currentUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = now(),
+      </if>
+    </set>
+    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecit.bean.OrderItem">
+    update ecit_order_item
+    set user_id = #{userId,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=BIGINT},
+      product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_image = #{productImage,jdbcType=VARCHAR},
+      current_unit_price = #{currentUnitPrice,jdbcType=DECIMAL},
+      quantity = #{quantity,jdbcType=INTEGER},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      created_by = #{createdBy,jdbcType=BIGINT},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
+      last_update_date = now()
+    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="getByOrderNoUserId" parameterType="map" resultMap="res">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from ecit_order_item
+    where order_no = #{orderNo}
+    and user_id = #{userId}
+  </select>
+
+  <select id="getByOrderNo" parameterType="map" resultMap="res">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from ecit_order_item
+    where order_no = #{orderNo}
+  </select>
+
+
+
+  <insert id="batchInsert" parameterType="list">
+    insert into ecit_order_item (order_item_id, order_no,user_id, product_id,
+    product_name, product_image, current_unit_price,
+    quantity, total_price, creation_date,
+    last_update_date)
+    values
+    <foreach collection="orderItemList" index="index" item="item" separator=",">
+      (
+      #{item.orderItemId},#{item.orderNo},#{item.userId},#{item.productId},#{item.productName},#{item.productImage},#{item.currentUnitPrice},#{item.quantity},#{item.totalPrice},now(),now()
+      )
+    </foreach>
+  </insert>
+</mapper>

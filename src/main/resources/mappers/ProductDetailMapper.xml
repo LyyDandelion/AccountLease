@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecit.dao.ProductDetailMapper">
+  <resultMap id="BaseResultMap" type="com.ecit.bean.ProductDetail">
+    <constructor>
+      <idArg column="product_detail_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="product_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="product_detail_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="product_detail_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="product_detail_desc" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="product_detail_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="product_detail_status" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="product_detail_init_price" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="product_detail_time" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="product_detail_discount" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="product_detail_violation" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="goods_discount_price" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="product_detail_remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="product_detail_reputation_level" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="product_detail_method" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="product_detail_deposit" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="CREATED_BY" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="CREATION_DATE" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="LAST_UPDATED_BY" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="LAST_UPDATE_DATE" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    product_detail_id, product_id, product_detail_code, product_detail_name, product_detail_desc, 
+    product_detail_type, product_detail_status, product_detail_init_price, product_detail_time, 
+    product_detail_discount, product_detail_violation, goods_discount_price, product_detail_remark, 
+    product_detail_reputation_level, product_detail_method, product_detail_deposit, CREATED_BY, 
+    CREATION_DATE, LAST_UPDATED_BY, LAST_UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ecit_product_detail
+    where product_detail_id = #{productDetailId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ecit_product_detail
+    where product_detail_id = #{productDetailId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ecit.bean.ProductDetail">
+    insert into ecit_product_detail (product_detail_id, product_id, product_detail_code, 
+      product_detail_name, product_detail_desc, product_detail_type, 
+      product_detail_status, product_detail_init_price, 
+      product_detail_time, product_detail_discount, 
+      product_detail_violation, goods_discount_price, 
+      product_detail_remark, product_detail_reputation_level, 
+      product_detail_method, product_detail_deposit, 
+      CREATED_BY, CREATION_DATE, LAST_UPDATED_BY, 
+      LAST_UPDATE_DATE)
+    values (#{productDetailId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{productDetailCode,jdbcType=VARCHAR}, 
+      #{productDetailName,jdbcType=VARCHAR}, #{productDetailDesc,jdbcType=VARCHAR}, #{productDetailType,jdbcType=VARCHAR}, 
+      #{productDetailStatus,jdbcType=VARCHAR}, #{productDetailInitPrice,jdbcType=REAL}, 
+      #{productDetailTime,jdbcType=BIGINT}, #{productDetailDiscount,jdbcType=BIGINT}, 
+      #{productDetailViolation,jdbcType=VARCHAR}, #{goodsDiscountPrice,jdbcType=REAL}, 
+      #{productDetailRemark,jdbcType=VARCHAR}, #{productDetailReputationLevel,jdbcType=VARCHAR}, 
+      #{productDetailMethod,jdbcType=VARCHAR}, #{productDetailDeposit,jdbcType=REAL}, 
+      #{createdBy,jdbcType=BIGINT}, #{creationDate,jdbcType=TIMESTAMP}, #{lastUpdatedBy,jdbcType=BIGINT}, 
+      #{lastUpdateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecit.bean.ProductDetail">
+    insert into ecit_product_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productDetailId != null">
+        product_detail_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productDetailCode != null">
+        product_detail_code,
+      </if>
+      <if test="productDetailName != null">
+        product_detail_name,
+      </if>
+      <if test="productDetailDesc != null">
+        product_detail_desc,
+      </if>
+      <if test="productDetailType != null">
+        product_detail_type,
+      </if>
+      <if test="productDetailStatus != null">
+        product_detail_status,
+      </if>
+      <if test="productDetailInitPrice != null">
+        product_detail_init_price,
+      </if>
+      <if test="productDetailTime != null">
+        product_detail_time,
+      </if>
+      <if test="productDetailDiscount != null">
+        product_detail_discount,
+      </if>
+      <if test="productDetailViolation != null">
+        product_detail_violation,
+      </if>
+      <if test="goodsDiscountPrice != null">
+        goods_discount_price,
+      </if>
+      <if test="productDetailRemark != null">
+        product_detail_remark,
+      </if>
+      <if test="productDetailReputationLevel != null">
+        product_detail_reputation_level,
+      </if>
+      <if test="productDetailMethod != null">
+        product_detail_method,
+      </if>
+      <if test="productDetailDeposit != null">
+        product_detail_deposit,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="creationDate != null">
+        CREATION_DATE,
+      </if>
+      <if test="lastUpdatedBy != null">
+        LAST_UPDATED_BY,
+      </if>
+      <if test="lastUpdateDate != null">
+        LAST_UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productDetailId != null">
+        #{productDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productDetailCode != null">
+        #{productDetailCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailName != null">
+        #{productDetailName,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailDesc != null">
+        #{productDetailDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailType != null">
+        #{productDetailType,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailStatus != null">
+        #{productDetailStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailInitPrice != null">
+        #{productDetailInitPrice,jdbcType=REAL},
+      </if>
+      <if test="productDetailTime != null">
+        #{productDetailTime,jdbcType=BIGINT},
+      </if>
+      <if test="productDetailDiscount != null">
+        #{productDetailDiscount,jdbcType=BIGINT},
+      </if>
+      <if test="productDetailViolation != null">
+        #{productDetailViolation,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDiscountPrice != null">
+        #{goodsDiscountPrice,jdbcType=REAL},
+      </if>
+      <if test="productDetailRemark != null">
+        #{productDetailRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailReputationLevel != null">
+        #{productDetailReputationLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailMethod != null">
+        #{productDetailMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailDeposit != null">
+        #{productDetailDeposit,jdbcType=REAL},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecit.bean.ProductDetail">
+    update ecit_product_detail
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productDetailCode != null">
+        product_detail_code = #{productDetailCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailName != null">
+        product_detail_name = #{productDetailName,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailDesc != null">
+        product_detail_desc = #{productDetailDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailType != null">
+        product_detail_type = #{productDetailType,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailStatus != null">
+        product_detail_status = #{productDetailStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailInitPrice != null">
+        product_detail_init_price = #{productDetailInitPrice,jdbcType=REAL},
+      </if>
+      <if test="productDetailTime != null">
+        product_detail_time = #{productDetailTime,jdbcType=BIGINT},
+      </if>
+      <if test="productDetailDiscount != null">
+        product_detail_discount = #{productDetailDiscount,jdbcType=BIGINT},
+      </if>
+      <if test="productDetailViolation != null">
+        product_detail_violation = #{productDetailViolation,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDiscountPrice != null">
+        goods_discount_price = #{goodsDiscountPrice,jdbcType=REAL},
+      </if>
+      <if test="productDetailRemark != null">
+        product_detail_remark = #{productDetailRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailReputationLevel != null">
+        product_detail_reputation_level = #{productDetailReputationLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailMethod != null">
+        product_detail_method = #{productDetailMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailDeposit != null">
+        product_detail_deposit = #{productDetailDeposit,jdbcType=REAL},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        CREATION_DATE = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        LAST_UPDATED_BY = #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        LAST_UPDATE_DATE = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where product_detail_id = #{productDetailId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecit.bean.ProductDetail">
+    update ecit_product_detail
+    set product_id = #{productId,jdbcType=BIGINT},
+      product_detail_code = #{productDetailCode,jdbcType=VARCHAR},
+      product_detail_name = #{productDetailName,jdbcType=VARCHAR},
+      product_detail_desc = #{productDetailDesc,jdbcType=VARCHAR},
+      product_detail_type = #{productDetailType,jdbcType=VARCHAR},
+      product_detail_status = #{productDetailStatus,jdbcType=VARCHAR},
+      product_detail_init_price = #{productDetailInitPrice,jdbcType=REAL},
+      product_detail_time = #{productDetailTime,jdbcType=BIGINT},
+      product_detail_discount = #{productDetailDiscount,jdbcType=BIGINT},
+      product_detail_violation = #{productDetailViolation,jdbcType=VARCHAR},
+      goods_discount_price = #{goodsDiscountPrice,jdbcType=REAL},
+      product_detail_remark = #{productDetailRemark,jdbcType=VARCHAR},
+      product_detail_reputation_level = #{productDetailReputationLevel,jdbcType=VARCHAR},
+      product_detail_method = #{productDetailMethod,jdbcType=VARCHAR},
+      product_detail_deposit = #{productDetailDeposit,jdbcType=REAL},
+      CREATED_BY = #{createdBy,jdbcType=BIGINT},
+      CREATION_DATE = #{creationDate,jdbcType=TIMESTAMP},
+      LAST_UPDATED_BY = #{lastUpdatedBy,jdbcType=BIGINT},
+      LAST_UPDATE_DATE = #{lastUpdateDate,jdbcType=TIMESTAMP}
+    where product_detail_id = #{productDetailId,jdbcType=BIGINT}
+  </update>
+</mapper>

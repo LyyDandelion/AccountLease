@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecit.dao.SysCodeMapper">
+  <resultMap id="BaseResultMap" type="com.ecit.bean.SysCode">
+    <constructor>
+      <idArg column="code_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="description" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="created_by" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="creation_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="last_updated_by" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="last_update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    code_id, code, description, created_by, creation_date, last_updated_by, last_update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_code
+    where code_id = #{codeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_code
+    where code_id = #{codeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ecit.bean.SysCode">
+    insert into sys_code (code_id, code, description, 
+      created_by, creation_date, last_updated_by, 
+      last_update_date)
+    values (#{codeId,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=BIGINT}, now(), #{lastUpdatedBy,jdbcType=BIGINT},
+      now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecit.bean.SysCode">
+    insert into sys_code
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="codeId != null">
+        code_id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="codeId != null">
+        #{codeId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecit.bean.SysCode">
+    update sys_code
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = now(),
+      </if>
+    </set>
+    where code_id = #{codeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecit.bean.SysCode">
+    update sys_code
+    set code = #{code,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=BIGINT},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
+      last_update_date = now()
+    where code_id = #{codeId,jdbcType=BIGINT}
+  </update>
+</mapper>

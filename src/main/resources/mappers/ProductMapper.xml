@@ -198,7 +198,7 @@
             <if test="lastUpdatedBy != null">
                 last_updated_by = #{lastUpdatedBy,jdbcType=BIGINT},
             </if>
-            <if test="lastUpdateDate != null">
+            <if test="lastUpdateDate != null or true">
                 last_update_date = now(),
             </if>
             <if test="account != null">

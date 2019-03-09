@@ -10,6 +10,7 @@ import com.alipay.demo.trade.model.result.AlipayF2FPrecreateResult;
 import com.alipay.demo.trade.service.AlipayTradeService;
 import com.alipay.demo.trade.service.impl.AlipayTradeServiceImpl;
 import com.alipay.demo.trade.utils.ZxingUtils;
+import com.ecit.dto.*;
 import com.ecit.service.IProductService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -34,17 +35,12 @@ import com.ecit.util.BigDecimalUtil;
 import com.ecit.util.DateTimeUtil;
 import com.ecit.util.FTPUtil;
 import com.ecit.util.PropertiesUtil;
-import com.ecit.dto.OrderItemDto;
-import com.ecit.dto.OrderProductDto;
-import com.ecit.dto.OrderDto;
-import com.ecit.dto.ShippingDto;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,7 +56,6 @@ import java.util.Random;
  */
 @Service
 public class OrderServiceImpl implements IOrderService {
-
 
     private static AlipayTradeService tradeService;
 
@@ -699,13 +694,13 @@ public class OrderServiceImpl implements IOrderService {
                 //组装新的数据更新
                 order.setPayment(orderItem.getTotalPrice())
                         .setPaymentTime(orderItem.getCreationDate())
-                        .setEndTime(DateTimeUtil.addTime(new Date(),orderItem.getQuantity()));
-                int rowNum= orderMapper.updateByPrimaryKeySelective(order);
-                if(rowNum>0)
-                {
+                        .setEndTime(DateTimeUtil.addTime(new Date(), orderItem.getQuantity()));
+                int rowNum = orderMapper.updateByPrimaryKeySelective(order);
+                if (rowNum > 0) {
                     //再更新产品状态
-                    ResponseData responseData= iProductService.setSaleStatus(orderItem.getProductId(),Const.ProductStatusEnum.RENTING.getCode());
-                    return  responseData;
+                    ResponseData responseData = iProductService.setSaleStatus(orderItem.getProductId(), Const.ProductStatusEnum.RENTING.getCode());
+                    return responseData;
+
                 }
                 return ResponseData.fail();
 
@@ -714,6 +709,39 @@ public class OrderServiceImpl implements IOrderService {
                 return ResponseData.fail("订单状态不是已支付状态");
             }
 
+        }
+        return ResponseData.fail();
+    }
+
+
+    /**
+     * 完成订单
+     *
+     * @param params
+     * @return
+     */
+    public ResponseData finishOrder(Map<String, Object> params) {
+
+        //获取订单号 orderNo
+        Long orderNo = (Long) params.get("orderNo");
+
+        List<OrderItem> orderItemList = orderItemMapper.getByOrderNo(orderNo);
+        if (orderItemList.size() != 1) {
+            ResponseData.fail("订单有误");
+        }
+        OrderItem orderItem = orderItemList.get(0);
+        //修改订单状态为完成
+        Order order = orderMapper.selectByOrderNo(orderNo);
+        order.setOrderStatus(Const.OrderStatusEnum.ORDER_SUCCESS.getCode());
+        int rowNum = orderMapper.updateByPrimaryKeySelective(order);
+        if (rowNum > 0) {
+            //修改产品为上架状态
+            Product product = productMapper.selectByPrimaryKey(orderItem.getProductId());
+            product.setStatus(Const.ProductStatusEnum.ON_SALE.getCode());
+            int row = productMapper.updateByPrimaryKeySelective(product);
+            if (row > 0) {
+                ResponseData.success("订单已完成,产品已改为上架状态");
+            }
         }
         return ResponseData.fail();
     }

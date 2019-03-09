@@ -30,4 +30,6 @@ public interface IOrderService {
     ResponseData createOrder(Integer userId, Integer productId, Integer quantity);
 
     ResponseData updateOrderInfo(Integer userId, Long orderNo);
+
+    ResponseData finishOrder(Map<String,Object> param);
 }

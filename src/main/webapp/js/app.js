@@ -36,5 +36,4 @@ function debug(){
 function  go_login() {
     sessionStorage.removeItem("username");
     $(location).prop("href","login.jsp");
-
 }

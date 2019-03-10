@@ -15,4 +15,6 @@ public interface ICategoryService {
     ResponseData<List<Integer>> selectCategoryAndChildrenById(Integer categoryId);
 
     ResponseData<Category> getCategoryByCode(String code);
+
+    ResponseData getCategoryInfoById(Integer categoryId);
 }

@@ -122,6 +122,22 @@ public class CategoryBackController {
         }
         return categoryService.getCategoryByCode(code);
     }
+    /**
+     * 根据categoryId获取当前节点信息
+     * @param session
+     * @param categoryId
+     * @return
+     */
+    @RequestMapping("get_category_info_by_id.do")
+    @ResponseBody
+    public ResponseData getCategoryInfoById(HttpSession session,Integer categoryId)
+    {
+        User user = (User)session.getAttribute(Const.THIS_USER);
+        if(user == null){
+            return ResponseData.fail(ResponseCode.NEED_LOGIN,"用户未登录,请登录");
+        }
+        return categoryService.getCategoryInfoById(categoryId);
+    }
 
     @RequestMapping("get_deep_category.do")
     @ResponseBody

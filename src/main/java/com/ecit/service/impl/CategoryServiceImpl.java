@@ -113,4 +113,20 @@ public class CategoryServiceImpl implements ICategoryService {
         }
         return ResponseData.success(category);
     }
+    /**
+     *根据 id获取Category
+     * @param categoryId
+     * @return
+     */
+    public ResponseData getCategoryInfoById(Integer categoryId)
+    {
+        Category category=categoryMapper.selectByPrimaryKey(categoryId);
+        if(category==null)
+        {
+            logger.info("未找到该分类");
+            return ResponseData.fail("未找到该分类");
+        }
+        return ResponseData.success(category);
+    }
+
 }

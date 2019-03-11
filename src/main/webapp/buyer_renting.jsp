@@ -155,7 +155,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <!-- //header-ends -->
         <div id="page-wrapper">
-
             <div class="container">
                 <div id="list" class="order-list">
 
@@ -240,7 +239,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 "<div class='list-d'><span class='label label-warning'>状态</span><span  style='margin-left: 7%'>"+info.statusDesc+"</span></br></div>"+
                                 "<div class='list-d'><span class='label label-danger'>时长</span><span  style='margin-left: 7%'>"+info.orderItemDtoList[0].quantity+'小时'+"</span></br></div>"+
                                 "<div class='list-d'><span class='label label-default'>金额</span><span  style='margin-left: 7%'>"+info.orderItemDtoList[0].totalPrice+'元'+"</span></br></div>"+
-                                "<div class='list-d'><span class='label label-success'>结束时间</span><span  style='margin-left: 3%'>"+info.closeTime+"</span></br></div><hr></div>"
+                                "<div class='list-d'><span class='label label-success'>结束时间</span><span  style='margin-left: 3%'>"+info.closeTime+"</span></br></div>" +
+                                "<div class='list-d'><span class='label label-success'>账号</span><span  style='margin-left: 7%'>"+info.orderItemDtoList[0].account+"</span></br></div>" +
+                                "<div class='list-d'><span class='label label-success'>密码</span><span  style='margin-left: 7%'>"+info.orderItemDtoList[0].password+"</span></br></div>" +
+
+                                "<hr></div>"
                             $("#list").append(el);
 
 
@@ -268,8 +271,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 flag=true;
                             }
                             if(flag){
-                                var btn_el="<button id='" + btn_op_id + "' style='width:55%;height:35px;margin-left: 15%;' class='btn btn-primary btn_op_name'>" + btn_op_name + "</button>"
-                                $("#list").append(btn_el);
+                                // var btn_el="<button id='" + btn_op_id + "' style='width:55%;height:35px;margin-left: 15%;' class='btn btn-primary btn_op_name'>" + btn_op_name + "</button>"
+                                // $("#list").append(btn_el);
                             }
 
 

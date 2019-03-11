@@ -285,6 +285,14 @@
 <script src="js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
+        var username = sessionStorage.getItem("username");
+        if (username == null) {
+            go_login();
+        }
+        else {
+            $("#user_tip").text(username);
+        }
+
         var productId = getUrlParam("productId");
         if (productId != null) {
             $.ajax({

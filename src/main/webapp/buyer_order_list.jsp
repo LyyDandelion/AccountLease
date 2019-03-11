@@ -9,8 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="Easy Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
+    <meta name="keywords" content="手游账号 网游账号 视频VIP 共享出租 价格实惠"/>
     <script type="application/x-javascript"> addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
@@ -139,7 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </a>
                                 <ul class="dropdown-menu drp-mnu">
                                     <li><a href="password_update.jsp"><i class="fa fa-cog"></i>修改密码</a></li>
-                                    <li><a id="user_center" href="#"><i class="fa fa-user"></i>个人中心</a></li>
+                                    <li><a id="user_center" href="user_center.jsp"><i class="fa fa-user"></i>个人中心</a></li>
                                     <li><a id="logout" onclick="go_login();" href="#"><i class="fa fa-sign-out"></i> 退出</a>
                                     </li>
                                 </ul>
@@ -158,7 +157,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <div class="container">
 
-                <div id="list" class="order-list">
+                <div id="list" class="order-list" style="width: 55%;">
 
 
                 </div>
@@ -169,7 +168,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     .order-detail ul li a{
                         text-decoration: none;
                     }
-                    .order-list, .order-detail{
+                    .order-list{
                         float: left;
                     }
                     .order-list{
@@ -224,7 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 {
                     if(data.data.size==0)
                     {
-                        var el="<div class='tip-div'>暂无订单!<div>";
+                        var el="<div class='tip-div' style='width:100%;'>暂无订单!<div>";
                         $("#list").append(el);
                     }
                     for(var i=0;i<data.data.size;i++)

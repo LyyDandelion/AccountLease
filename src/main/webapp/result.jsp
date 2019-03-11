@@ -18,37 +18,53 @@
     .pass-reset-success,.register-success,.cart-add-success,.payment-success,.default-success{
         display: none;
     }
+    .res-show{
+        display: block;
+        margin: 7% 30%;
+        border: solid;
+        border-radius: 12px;
+        border-color: coral;
+        padding-left: 80px;
+    }
+    .result-content{
+        margin-left: 23%;
+        padding-bottom: 4%;
+        font-size: 1.5em;
+
+    }
+    .link{
+        margin-left:3%;
+        text-decoration: none;
+        color: cornflowerblue;
+    }
+    .result-title{
+        color:orange;
+    }
 
 </style>
 <div id="parent">
 
 
-<div id="register_success" class="result-con register-success">
+<div id="register_success" class="result-con register-success res-show">
     <h1 class="result-title">恭喜您，注册成功！</h1>
-    <p class="result-content">
+    <div class="result-content">
         <a class="link" href="login.jsp">立即去登录</a>
-    </p>
+    </div>
 </div>
-<div id="reset_pass_success" class="result-con pass-reset-success">
+<div id="reset_pass_success" class="result-con pass-reset-success res-show">
     <h1 class="result-title">恭喜您，重置密码成功！</h1>
     <p class="result-content">
         <a class="link" href="login.jsp">立即去登录</a>
     </p>
 </div>
-<div  class="result-con cart-add-success">
-    <h1 class="result-title">您的商品已成功加入购物车</h1>
-    <p class="result-content">
-        <a class="link" href="./index.html">继续购物</a>
-        <a class="link" href="./cart.html">去购物车查看</a>
-    </p>
-</div>
-<div id="payment_success" class="result-con payment-success">
+
+<div id="payment_success" class="result-con payment-success res-show">
     <h1 class="result-title">您的订单支付成功！</h1>
     <p class="result-content">
         <a class="link my-order" href="buyer_renting.jsp">查看我的订单</a>
     </p>
 </div>
-<div class="result-con default-success">
+<div class="result-con default-success res-show">
     <h1 class="result-title">恭喜您，操作成功</h1>
     <p class="result-content">
         <a class="link" href="./index.html">返回首页</a>

@@ -142,7 +142,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </a>
                                 <ul class="dropdown-menu drp-mnu">
                                     <li><a href="password_update.jsp"><i class="fa fa-cog"></i>修改密码</a></li>
-                                    <li><a id="user_center" href="#"><i class="fa fa-user"></i>个人中心</a></li>
+                                    <li><a id="user_center" href="user_center.jsp"><i class="fa fa-user"></i>个人中心</a></li>
                                     <li><a id="logout" onclick="go_login();" href="#"><i class="fa fa-sign-out"></i> 退出</a>
                                     </li>
                                 </ul>

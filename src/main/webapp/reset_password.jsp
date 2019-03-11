@@ -10,25 +10,38 @@
 <head>
     <title>找回密码</title>
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/nav-side.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 </head>
 <body>
-    <div id="div_username" >
-        <a id="error"></a>
-        <input type="text" id="username" name="username" placeholder="请输入用户名"/>
-        <input type="button" id="next" value="下一步"/>
-    </div>
-    <div id="div_answer">
-        <a id="answer_error"></a>
-        <a id="tip_question"></a>
-        <input type="text" id="answer" placeholder="请输入答案"/>
-        <input type="button" id="next_again" value="下一步"/>
-    </div>
-    <div id="div_new_pass">
-        <input type="text" id="passwordNew" placeholder="新密码"/>
-        <input type="button" value="提交" id="submit">
-    </div>
+
+        <div  id="div_username" class="div-all"  >
+            <div style="margin-bottom: 1%;"  ><span id="error" class="label label-danger" ></span></div>
+            <div  style="margin-bottom: 5%"><input type="text" id="username" class="pa-input" placeholder="请输入用户名"/></div>
+            <div ><button  id="next"  style="width: 30%;" class="btn btn-danger" >下一步</button></div>
+        </div>
+        <div  id="div_answer" class="div-all" >
+            <div style="margin-bottom: 1%;"><span id="answer_error" class="label label-danger"></span></div>
+            <div  style="margin-bottom: 1%"><span id="tip_question" class="label label-info"></span></div>
+            <div style="margin-bottom: 5%"><input type="text" id="answer" class="pa-input" placeholder="请输入答案"/></div>
+            <div ><button  style="width: 30%;" class="btn btn-danger" id="next_again">下一步</button></div>
+        </div>
+        <div  id="div_new_pass" class="div-all" >
+            <div style="margin-bottom: 5%"><input type="text" class="pa-input" id="passwordNew" placeholder="新密码"/></div>
+            <div > <button style="width: 30%;" class="btn btn-success" id="submit">提交</button></div>
+        </div>
+
 
     <style type="text/css">
+        .div-all{
+            margin-left: 34%;
+            margin-top: 11%;
+        }
+        .pa-input{
+            font-size: 1.5em;border-radius: 5px;
+        }
+
         #div_answer{
             display: none;
         }

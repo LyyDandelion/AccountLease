@@ -130,12 +130,12 @@
 })(jQuery);
 
                       // Dropdowns Script
-						$(document).ready(function() {
-						  $(document).on('click', function(ev) {
-						    ev.stopImmediatePropagation();
-						    $(".dropdown-toggle").dropdown("active");
-						  });
-						});
+						// $(document).ready(function() {
+						//   $(document).on('click', function(ev) {
+						//     ev.stopImmediatePropagation();
+						//     $(".dropdown-toggle").dropdown("active");
+						//   });
+						// });
 						
 	
      

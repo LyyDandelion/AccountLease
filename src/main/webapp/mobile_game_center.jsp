@@ -12,8 +12,7 @@
     <title>手游中心</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="Easy Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
+    <meta name="keywords" content="手游账号 网游账号 视频VIP 共享出租 价格实惠"/>
     <script type="application/x-javascript"> addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
@@ -149,7 +148,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </a>
                             <ul class="dropdown-menu drp-mnu">
                                 <li><a href="password_update.jsp"><i class="fa fa-cog"></i>修改密码</a></li>
-                                <li><a id="user_center" href="#"><i class="fa fa-user"></i>个人中心</a></li>
+                                <li><a id="user_center" href="user_center.jsp"><i class="fa fa-user"></i>个人中心</a></li>
                                 <li><a id="logout" onclick="go_login();" href="#"><i class="fa fa-sign-out"></i> 退出</a>
                                 </li>
                             </ul>

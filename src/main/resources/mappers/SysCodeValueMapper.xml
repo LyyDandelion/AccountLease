@@ -16,13 +16,11 @@
   </resultMap>
 
   <resultMap id="ViewMap" type="com.ecit.dto.SysCodeDto">
-    <constructor>
-      <arg column="code_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="code" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="value" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="meaning" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="description" javaType="java.lang.String" jdbcType="VARCHAR" />
-    </constructor>
+      <result column="code_id" property="codeId" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <result column="code" property="code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="value" property="value" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="meaning" property="meaning" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="description" property="description" javaType="java.lang.String" jdbcType="VARCHAR" />
   </resultMap>
 
   <sql id="Base_Column_List">
@@ -158,7 +156,7 @@
     select * from sys_code_value_v
     <where>
       <if test="code!=null">
-        code=#{code}
+        and code=#{code}
       </if>
     </where>
   </select>

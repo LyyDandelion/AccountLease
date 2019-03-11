@@ -112,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-grain"></i> <span>商家角色</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="#">全部商品</a></li>
+                        <li><a href="business_product_list.jsp">全部商品</a></li>
                         <li><a href="#">已上架</a></li>
                         <li><a href="#">已下架</a></li>
                         <li><a href="#">全部订单</a></li>

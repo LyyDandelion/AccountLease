@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 public class SysCodeDto {
 
-    private Integer codeId;
+    private Long codeId;
     private String code;
     private String description;
     private String value;

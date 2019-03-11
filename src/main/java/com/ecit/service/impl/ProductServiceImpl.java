@@ -44,9 +44,10 @@ public class ProductServiceImpl implements IProductService {
         if (product != null) {
             if (StringUtils.isNotBlank(product.getSubImages())) {
                 String[] subImageArray = product.getSubImages().split(",");
-                if (subImageArray.length > 0) {
-                    product.setMainImage(subImageArray[0]);
-                }
+                //起初意图将首张图片作为主图显示，目前需求改为主图统一使用数据所属软件LOGO
+//                if (subImageArray.length > 0) {
+//                    product.setMainImage(subImageArray[0]);
+//                }
             }
             //如果有productId,则为更新产品
             if (product.getProductId() != null) {

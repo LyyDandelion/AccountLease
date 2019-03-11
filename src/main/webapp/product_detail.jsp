@@ -92,7 +92,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-grain"></i> <span>商家角色</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="#">全部商品</a></li>
+                        <li><a href="business_product_list.jsp">全部商品</a></li>
                         <li><a href="#">已上架</a></li>
                         <li><a href="#">已下架</a></li>
                         <li><a href="#">全部订单</a></li>
@@ -156,7 +156,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-4 widget_middle_left">
                         <div class="widget_middle_left_slider">
                             <div class="main-grid1-grids">
-                                <img id="img_detail" src="http://image.ecit.com/naruto.png" width="100%" height="100%">
+                                <img id="img_detail"  width="100%" height="100%">
                             </div>
 
                         </div>

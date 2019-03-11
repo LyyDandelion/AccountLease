@@ -3,6 +3,7 @@ package com.ecit.dao;
 import com.ecit.bean.SysCodeValue;
 import com.ecit.common.ResponseData;
 import com.ecit.dto.SysCodeDto;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface SysCodeValueMapper {
 
     int updateByPrimaryKey(SysCodeValue record);
 
-    List<SysCodeDto> getCodeView(String code);
+    List<SysCodeDto> getCodeView(@Param("code") String code);
 }

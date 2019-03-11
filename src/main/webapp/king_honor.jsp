@@ -101,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-grain"></i> <span>商家角色</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="#">全部商品</a></li>
+                        <li><a href="business_product_list.jsp">全部商品</a></li>
                         <li><a href="#">已上架</a></li>
                         <li><a href="#">已下架</a></li>
                         <li><a href="#">全部订单</a></li>
@@ -225,6 +225,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             var mainImage = info.list[i].mainImage;
             var img_url = imageHost + mainImage;
             var productId = info.list[i].productId;
+            var price=info.list[i].price;
             var params = [productId];
 
             var el="<div class=\"media\">\n" +
@@ -240,7 +241,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 "                        <div class=\"media-body\" style=\"width: 10%;\"></div>"+
                 "                        <div class=\"media-body\" style=\"width: 23%;\">\n" +
                 "                            <h4 class=\"media-heading\"  id=\"name1\">租金</h4>\n" +
-                "                            <span class=\"product-detail\" style='color:orangered;font-size:1.5em;'>4.5元/小时</span>\n" +
+                "                            <span class=\"product-detail\" style='color:orangered;font-size:1.5em;'>"+price+"元/小时</span>\n" +
                 "                        </div>\n" +
                 "                        <div class=\"media-right\">\n" +
                 "                            <div>\n" +

@@ -73,7 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-leaf"></i> <span>出租商品</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="#">手游账号</a></li>
+                        <li><a href="product_add_mobile.jsp">手游账号</a></li>
                         <li><a href="#">端游账号</a></li>
                         <li><a href="#">视频账号</a></li>
 
@@ -89,9 +89,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i>
                     <span>买家角色</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="#">所有订单</a></li>
+                        <li><a href="buyer_order_list.jsp">所有订单</a></li>
                         <li><a href="#">待付款</a></li>
-                        <li><a href="#">租用中</a></li>
+                        <li><a href="buyer_renting.jsp">租用中</a></li>
                         <li><a href="#">退款中</a></li>
                         <li><a href="#">售后</a></li>
                     </ul>
@@ -194,6 +194,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             success: function (data) {
                 log(data)
                 if (data.success) {
+                    if(data.data.size==0)
+                    {
+                        var el="<div class='tip-div'>暂无商品!<div>";
+                        $("#div_list").append(el);
+                    }
                     var info = data.data;
                     for (var i = 0; i < info.size; i++) {
                         var status = info.list[i].status;
@@ -204,8 +209,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         var img_url = imageHost + mainImage;
                         var productId = info.list[i].productId;
                         var params = [productId, status];
-
-
+                        var btn_op_name;
+                        var btn_op_id;
+                        var btn_op_name_edit;
+                        var btn_edit_id;
 
                         if (status == 1) {
                             btn_op_name = "下架"
@@ -238,15 +245,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 // debugger;
                                 if(data.success)
                                 {
-                                    var info=data.data;
-                                    for(var i=0;i<info.size;i++)
-                                    {
-                                        if(info.list[i].value==status)
+
+                                        var info=data.data;
+                                        for(var i=0;i<info.size;i++)
                                         {
-                                            status_desc= info.list[i].meaning;
-                                            break;
+                                            if(info.list[i].value==status)
+                                            {
+                                                status_desc= info.list[i].meaning;
+                                                break;
+                                            }
                                         }
-                                    }
+
                                 }
                                 else{
                                     return data;

@@ -85,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-leaf"></i> <span>出租商品</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="#">手游账号</a></li>
+                        <li><a href="product_add_mobile.jsp">手游账号</a></li>
                         <li><a href="#">端游账号</a></li>
                         <li><a href="#">视频账号</a></li>
 
@@ -101,9 +101,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i>
                     <span>买家角色</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="#">所有订单</a></li>
+                        <li><a href="buyer_order_list.jsp">所有订单</a></li>
                         <li><a href="#">待付款</a></li>
-                        <li><a href="#">租用中</a></li>
+                        <li><a href="buyer_renting.jsp">租用中</a></li>
                         <li><a href="#">退款中</a></li>
                         <li><a href="#">售后</a></li>
                     </ul>

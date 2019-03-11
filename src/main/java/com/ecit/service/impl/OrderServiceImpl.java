@@ -178,7 +178,7 @@ public class OrderServiceImpl implements IOrderService {
                 .setPaymentTypeDesc(Const.PaymentTypeEnum.codeOf(order.getPaymentType()).getValue())
                 .setPostage(order.getPostage())
                 .setStatus(order.getOrderStatus())
-                .setStatusDesc(Const.OrderStatusEnum.codeOf(order.getOrderStatus()).getValue())
+                .setStatusDesc(order.getOrderStatus()==null?null:Const.OrderStatusEnum.codeOf(order.getOrderStatus()).getValue())
                 .setShippingId(order.getShippingId());
         Shipping shipping = shippingMapper.selectByPrimaryKey(order.getShippingId());
         if (shipping != null) {

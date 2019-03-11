@@ -56,8 +56,8 @@ public class Const {
         NO_PAY("NO_PAY","未支付"),
         PAID("PAID","已支付"),
         SHIPPED("SHIPPED","已发货"),
-        ORDER_SUCCESS("ORDER_SUCCESS","订单完成"),
-        ORDER_CLOSE("ORDER_CLOSE","订单关闭")
+        ORDER_SUCCESS("SUCCESS","订单完成"),
+        ORDER_CLOSE("CLOSED","订单关闭")
         ;
 
 

@@ -219,6 +219,24 @@
     where order_no = #{orderNo}
   </select>
 
+  <select id="selectBySelective" parameterType="com.ecit.bean.OrderItem"
+          resultMap="res">
+    select
+    <include refid="Base_Column_List"/>
+    from ecit_order_item
+    <where>
+      <if test="userId!=null and userId!=''">
+        and user_id=#{userId}
+      </if>
+      <if test="productId!=null and productId!=''">
+        and product_id=#{productId}
+      </if>
+      <if test="quantity!=null and quantity!=''">
+        and quantity=#{quantity}
+      </if>
+    </where>
+
+  </select>
 
 
   <insert id="batchInsert" parameterType="list">

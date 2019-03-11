@@ -139,6 +139,31 @@ public class OrderServiceImpl implements IOrderService {
      * @return
      */
     public ResponseData createOrder(Integer userId, Integer productId, Integer quantity) {
+
+        //创建订单前，先查看该用户有没有创建过该商品的订单
+        OrderItem orderItemTemp=new OrderItem();
+        orderItemTemp.setUserId(userId)
+                .setProductId(productId)
+                .setQuantity(quantity);
+        OrderItem orderItemToSearch= orderItemMapper.selectBySelective(orderItemTemp);
+        if(orderItemToSearch!=null)
+        {
+            Order orderToSearch=orderMapper.selectByOrderNo(orderItemToSearch.getOrderNo());
+            if(orderToSearch!=null&&orderToSearch.getOrderStatus().equals(Const.OrderStatusEnum.NO_PAY.getCode()))
+            {
+                Product productTemp = productMapper.selectByPrimaryKey(productId);
+
+                ResponseData ResponseData = this.getCartOrderItem(userId, productTemp, quantity);
+                if (!ResponseData.isSuccess()) {
+                    return ResponseData;
+                }
+                List<OrderItem> orderItemListTemp = (List<OrderItem>) ResponseData.getData();
+                OrderDto orderDtoTemp = assembleOrderVo(orderToSearch, orderItemListTemp, null);
+                return ResponseData.success(orderDtoTemp);
+            }
+
+        }
+
         Product product = productMapper.selectByPrimaryKey(productId);
 
         ResponseData ResponseData = this.getCartOrderItem(userId, product, quantity);

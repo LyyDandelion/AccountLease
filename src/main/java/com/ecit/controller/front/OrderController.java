@@ -47,7 +47,7 @@ public class OrderController {
      * @param shippingId
      * @return
      */
-    @RequestMapping("create.do")
+    @RequestMapping(value = "create.do",method = RequestMethod.POST)
     @ResponseBody
     public ResponseData create(HttpSession session, Integer shippingId){
         User user = (User)session.getAttribute(Const.THIS_USER);

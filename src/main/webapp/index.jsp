@@ -175,7 +175,7 @@
                             <div class="stats">
                                 <h5>45 <span>%</span></h5>
                                 <div class="grow">
-                                    <p>Growth</p>
+                                    <p>增长量</p>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +186,7 @@
                             <div class="stats">
                                 <h5>50 <span>%</span></h5>
                                 <div class="grow grow1">
-                                    <p>New Users</p>
+                                    <p>新用户量</p>
                                 </div>
                             </div>
                         </div>
@@ -197,7 +197,7 @@
                             <div class="stats">
                                 <h5>70 <span>%</span></h5>
                                 <div class="grow grow3">
-                                    <p>Visitors</p>
+                                    <p>访问量</p>
                                 </div>
                             </div>
                         </div>
@@ -208,7 +208,7 @@
                             <div class="stats">
                                 <h5>70 <span>%</span></h5>
                                 <div class="grow grow2">
-                                    <p>Profit</p>
+                                    <p>收益</p>
                                 </div>
                             </div>
                         </div>
@@ -222,12 +222,12 @@
                         <div class="col-md-4 switch-right">
                             <div class="switch-right-grid">
                                 <div class="switch-right-grid1">
-                                    <h3>TODAY'S STATS</h3>
-                                    <p>Duis aute irure dolor in reprehenderit.</p>
+                                    <h3>今日统计</h3>
+                                    <p>销售业务实况.</p>
                                     <ul>
-                                        <li>Earning: $400 USD</li>
-                                        <li>Items Sold: 20 Items</li>
-                                        <li>Last Hour Sales: $34 USD</li>
+                                        <li>收入: ￥4000 元</li>
+                                        <li>销量: 200 件</li>
+                                        <li>上个小时销售额: ￥340 元</li>
                                     </ul>
                                 </div>
                             </div>
@@ -255,12 +255,12 @@
                         <div class="col-md-4 switch-right">
                             <div class="switch-right-grid">
                                 <div class="switch-right-grid1">
-                                    <h3>MONTHLY STATS</h3>
-                                    <p>Duis aute irure dolor in reprehenderit.</p>
+                                    <h3>月度统计</h3>
+                                    <p>销售业务实况.</p>
                                     <ul>
-                                        <li>Earning: $5,000 USD</li>
-                                        <li>Items Sold: 400 Items</li>
-                                        <li>Last Hour Sales: $2,434 USD</li>
+                                        <li>收入: ￥50000 元</li>
+                                        <li>销量: 4000 件</li>
+                                        <li>上月收入: ￥24340 元</li>
                                     </ul>
                                 </div>
                             </div>
@@ -290,12 +290,12 @@
                         <div class="col-md-4 switch-right">
                             <div class="switch-right-grid">
                                 <div class="switch-right-grid1">
-                                    <h3>ALLTIME STATS</h3>
-                                    <p>Duis aute irure dolor in reprehenderit.</p>
+                                    <h3>本年统计</h3>
+                                    <p>销售实况.</p>
                                     <ul>
-                                        <li>Earning: $80,000 USD</li>
-                                        <li>Items Sold: 8,000 Items</li>
-                                        <li>Last Hour Sales: $75,434 USD</li>
+                                        <li>收入: ￥800000 元</li>
+                                        <li>销量: 8,000 件</li>
+                                        <li>上一年收入: ￥75,434 元</li>
                                     </ul>
                                 </div>
                             </div>
@@ -379,54 +379,44 @@
                 <div class="col_1">
                     <div class="col-md-4 span_8">
                         <div class="activity_box">
-                            <h3>Inbox</h3>
+                            <h3>收件箱</h3>
                             <div class="scrollbar scrollbar1" id="style-3">
                                 <div class="activity-row">
-                                    <div class="col-xs-3 activity-img"><img src='images/1.png' class="img-responsive"
+                                    <div class="col-xs-3 activity-img"><img src='images/han_xin.jpg' class="img-responsive"
                                                                             alt=""/></div>
                                     <div class="col-xs-7 activity-desc">
-                                        <h5><a href="#">John Smith</a></h5>
-                                        <p>Hey ! There I'm available.</p>
+                                        <h5><a href="#">韩 信</a></h5>
+                                        <p>国士无双.</p>
                                     </div>
                                     <div class="col-xs-2 activity-desc1"><h6>13:40 PM</h6></div>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="activity-row">
-                                    <div class="col-xs-3 activity-img"><img src='images/1.jpg' class="img-responsive"
+                                    <div class="col-xs-3 activity-img"><img src='images/li_bai.jpg' class="img-responsive"
                                                                             alt=""/></div>
                                     <div class="col-xs-7 activity-desc">
-                                        <h5><a href="#">Andrew Jos</a></h5>
-                                        <p>Hey ! There I'm available.</p>
+                                        <h5><a href="#">李 白</a></h5>
+                                        <p>旅途永无止境.</p>
                                     </div>
                                     <div class="col-xs-2 activity-desc1"><h6>13:40 PM</h6></div>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="activity-row">
-                                    <div class="col-xs-3 activity-img"><img src='images/3.png' class="img-responsive"
+                                    <div class="col-xs-3 activity-img"><img src='images/sun_wu_kong.jpg' class="img-responsive"
                                                                             alt=""/></div>
                                     <div class="col-xs-7 activity-desc">
-                                        <h5><a href="#">Adom Smith</a></h5>
-                                        <p>Hey ! There I'm available.</p>
+                                        <h5><a href="#">孙 悟 空</a></h5>
+                                        <p>有妖气.</p>
                                     </div>
                                     <div class="col-xs-2 activity-desc1"><h6>13:40 PM</h6></div>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="activity-row">
-                                    <div class="col-xs-3 activity-img"><img src='images/4.png' class="img-responsive"
+                                    <div class="col-xs-3 activity-img"><img src='images/lu_ban.jpg' class="img-responsive"
                                                                             alt=""/></div>
                                     <div class="col-xs-7 activity-desc">
-                                        <h5><a href="#">Peter Carl</a></h5>
-                                        <p>Hey ! There I'm available.</p>
-                                    </div>
-                                    <div class="col-xs-2 activity-desc1"><h6>13:40 PM</h6></div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="activity-row">
-                                    <div class="col-xs-3 activity-img"><img src='images/1.png' class="img-responsive"
-                                                                            alt=""/></div>
-                                    <div class="col-xs-7 activity-desc">
-                                        <h5><a href="#">John Smith</a></h5>
-                                        <p>Hey ! There I'm available.</p>
+                                        <h5><a href="#">鲁 班</a></h5>
+                                        <p>来打我呀！</p>
                                     </div>
                                     <div class="col-xs-2 activity-desc1"><h6>13:40 PM</h6></div>
                                     <div class="clearfix"></div>
@@ -436,15 +426,15 @@
                     </div>
                     <div class="col-md-4 span_8">
                         <div class="activity_box activity_box1">
-                            <h3>chat</h3>
+                            <h3>聊天</h3>
                             <div class="scrollbar" id="style-4">
                                 <div class="activity-row activity-row1">
-                                    <div class="col-xs-3 activity-img"><img src='images/1.png' class="img-responsive"
+                                    <div class="col-xs-3 activity-img"><img src='images/lu_ban.jpg' class="img-responsive"
                                                                             alt=""/><span>10:00 PM</span></div>
                                     <div class="col-xs-5 activity-img1">
                                         <div class="activity-desc-sub">
-                                            <h5>John Smith</h5>
-                                            <p>Hello !</p>
+                                            <h5>鲁班七号</h5>
+                                            <p>来抓我呀!</p>
                                         </div>
                                     </div>
                                     <div class="col-xs-4 activity-desc1"></div>
@@ -454,21 +444,21 @@
                                     <div class="col-xs-2 activity-desc1"></div>
                                     <div class="col-xs-7 activity-img2">
                                         <div class="activity-desc-sub1">
-                                            <h5>Adom Smith</h5>
-                                            <p>Hi,How are you ? What about our next meeting?</p>
+                                            <h5>李白</h5>
+                                            <p>过来,保证不欺负你!</p>
                                         </div>
                                     </div>
-                                    <div class="col-xs-3 activity-img"><img src='images/3.png' class="img-responsive"
+                                    <div class="col-xs-3 activity-img"><img src='images/li_bai.jpg' class="img-responsive"
                                                                             alt=""/><span>10:02 PM</span></div>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="activity-row activity-row1">
-                                    <div class="col-xs-3 activity-img"><img src='images/1.png' class="img-responsive"
+                                    <div class="col-xs-3 activity-img"><img src='images/sun_wu_kong.jpg' class="img-responsive"
                                                                             alt=""/><span>10:00 PM</span></div>
                                     <div class="col-xs-5 activity-img1">
                                         <div class="activity-desc-sub">
-                                            <h5>John Smith</h5>
-                                            <p>Yeah fine</p>
+                                            <h5>孙悟空</h5>
+                                            <p>一棍子的事情</p>
                                         </div>
                                     </div>
                                     <div class="col-xs-4 activity-desc1"></div>
@@ -478,80 +468,61 @@
                                     <div class="col-xs-2 activity-desc1"></div>
                                     <div class="col-xs-7 activity-img2">
                                         <div class="activity-desc-sub1">
-                                            <h5>Adom Smith</h5>
-                                            <p>Wow that's great</p>
+                                            <h5>李白</h5>
+                                            <p>我的酒壶被这小子怼坏了</p>
                                         </div>
                                     </div>
-                                    <div class="col-xs-3 activity-img"><img src='images/3.png' class="img-responsive"
+                                    <div class="col-xs-3 activity-img"><img src='images/li_bai.jpg' class="img-responsive"
                                                                             alt=""/><span>10:02 PM</span></div>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
                             <form>
-                                <input type="text" value="Enter your text" onfocus="this.value = '';"
-                                       onblur="if (this.value == '') {this.value = 'Enter your text';}" required="">
-                                <input type="submit" value="Send" required=""/>
+                                <input type="text" value="" onfocus="this.value = '';"
+                                       onblur="if (this.value == '') {this.value = '回复';}" required="">
+                                <input type="submit" value="发送" required=""/>
                             </form>
                         </div>
                     </div>
                     <div class="col-md-4 span_8">
                         <div class="activity_box activity_box2">
-                            <h3>todo</h3>
+                            <h3>待办事项</h3>
                             <div class="scrollbar" id="style-2">
                                 <div class="activity-row activity-row1">
                                     <div class="single-bottom">
                                         <ul>
                                             <li>
                                                 <input type="checkbox" id="brand" value="">
-                                                <label for="brand"><span></span> Sunt in culpa qui officia.</label>
+                                                <label for="brand"><span></span> 李白邀你去洞庭湖游玩.</label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="brand1" value="">
-                                                <label for="brand1"><span></span> Fugiat quo voluptas nulla.</label>
+                                                <label for="brand1"><span></span> 《三体》仅看了21%，离目标还远.</label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="brand2" value="">
-                                                <label for="brand2"><span></span> Dolorem eum.</label>
+                                                <label for="brand2"><span></span> 2月14号，女友生日.</label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="brand9" value="">
-                                                <label for="brand9"><span></span> Pain that produces no
-                                                    resultant.</label>
+                                                <label for="brand9"><span></span> 有15个订单需要您处理.</label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="brand8" value="">
-                                                <label for="brand8"><span></span> Cupidatat non proident.</label>
+                                                <label for="brand8"><span></span> 103件商品需要审核.</label>
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="brand7" value="">
-                                                <label for="brand7"><span></span> Praising pain was born.</label>
+                                                <label for="brand7"><span></span> 本周销售报表未导出.</label>
                                             </li>
-                                            <li>
-                                                <input type="checkbox" id="brand3" value="">
-                                                <label for="brand3"><span></span> Computer & Electronics</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="brand4" value="">
-                                                <label for="brand4"><span></span> Dolorem ipsum quia.</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="brand5" value="">
-                                                <label for="brand5"><span></span> Consequatur aut perferendis.</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="brand6" value="">
-                                                <label for="brand6"><span></span> Dolorem ipsum quia.</label>
-                                            </li>
-
-
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <form>
-                                <input type="text" value="Enter your text" onfocus="this.value = '';"
-                                       onblur="if (this.value == '') {this.value = 'Enter your text';}" required="">
-                                <input type="submit" value="Submit" required=""/>
+                                <input type="text" value="" onfocus="this.value = '';"
+                                       onblur="if (this.value == '') {this.value = '';}" required="">
+                                <input type="submit" value="提交" required=""/>
                             </form>
                         </div>
                         <div class="clearfix"></div>

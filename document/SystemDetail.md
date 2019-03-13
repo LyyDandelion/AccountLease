@@ -38,8 +38,20 @@
 ![module1-11](/document/image/system_detail/module1-11.png)
 
 ## 模块 2：首页
+注：首页所显示信息仅仅是效果展示，并未做任何功能接口，具体功能均在导航条内
+
+![module2-0](/document/image/system_detail/module2-0.png)
+
+![module2-1](/document/image/system_detail/module2-1.png)
+
+![module2-2](/document/image/system_detail/module2-2.png)
+
+![module2-3](/document/image/system_detail/module2-3.png)
 
 ## 模块 3：个人中心
+
+![module3-0](/document/image/system_detail/module3-0.png)
+
 
 ### 个人信息
 

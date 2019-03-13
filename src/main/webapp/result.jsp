@@ -45,12 +45,12 @@
 <div id="parent">
 
 
-<div id="register_success" class="result-con register-success res-show">
-    <h1 class="result-title">恭喜您，注册成功！</h1>
-    <div class="result-content">
-        <a class="link" href="login.jsp">立即去登录</a>
-    </div>
-</div>
+<%--<div id="register_success" class="result-con register-success res-show">--%>
+    <%--<h1 class="result-title">恭喜您，注册成功！</h1>--%>
+    <%--<div class="result-content">--%>
+        <%--<a class="link" href="login.jsp">立即去登录</a>--%>
+    <%--</div>--%>
+<%--</div>--%>
 <div id="reset_pass_success" class="result-con pass-reset-success res-show">
     <h1 class="result-title">恭喜您，重置密码成功！</h1>
     <p class="result-content">
@@ -58,18 +58,18 @@
     </p>
 </div>
 
-<div id="payment_success" class="result-con payment-success res-show">
-    <h1 class="result-title">您的订单支付成功！</h1>
-    <p class="result-content">
-        <a class="link my-order" href="buyer_renting.jsp">查看我的订单</a>
-    </p>
-</div>
-<div class="result-con default-success res-show">
-    <h1 class="result-title">恭喜您，操作成功</h1>
-    <p class="result-content">
-        <a class="link" href="./index.html">返回首页</a>
-    </p>
-</div>
+<%--<div id="payment_success" class="result-con payment-success res-show">--%>
+    <%--<h1 class="result-title">您的订单支付成功！</h1>--%>
+    <%--<p class="result-content">--%>
+        <%--<a class="link my-order" href="buyer_renting.jsp">查看我的订单</a>--%>
+    <%--</p>--%>
+<%--</div>--%>
+<%--<div class="result-con default-success res-show">--%>
+    <%--<h1 class="result-title">恭喜您，操作成功</h1>--%>
+    <%--<p class="result-content">--%>
+        <%--<a class="link" href="./index.html">返回首页</a>--%>
+    <%--</p>--%>
+<%--</div>--%>
 </div>
 
     <script >

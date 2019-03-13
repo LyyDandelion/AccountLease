@@ -25,3 +25,40 @@
 
 ### 忘记密码
 
+![module1-6](/document/image/system_detail/module1-6.png)
+
+![module1-7](/document/image/system_detail/module1-7.png)
+
+![module1-8](/document/image/system_detail/module1-8.png)
+
+![module1-9](/document/image/system_detail/module1-9.png)
+
+![module1-10](/document/image/system_detail/module1-10.png)
+
+![module1-11](/document/image/system_detail/module1-11.png)
+
+## 模块 2：首页
+
+## 模块 3：个人中心
+
+### 个人信息
+
+### 修改密码
+## 模块 4：出租商品（卖家）
+
+## 模块 5：卖家角色模块
+
+### 全部商品
+### 已上架
+### 已下架
+### 全部订单
+## 模块 6：租号（买家）
+### 手游账号
+### 端游账号
+### 视频账号
+## 模块 7：买家角色模块
+### 所有订单
+### 待付款
+### 租用中
+### 退款中
+### 售后

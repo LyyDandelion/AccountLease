@@ -84,8 +84,8 @@
                     <span>出租商品</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="product_add_mobile.jsp">手游账号</a></li>
-                        <li><a href="#">端游账号</a></li>
-                        <li><a href="#">视频账号</a></li>
+                        <li><a href="product_add_pc.jsp">端游账号</a></li>
+                        <li><a href="product_add_vip.jsp">视频账号</a></li>
 
                     </ul>
                 </li>
@@ -95,15 +95,15 @@
                     </a>
                     <ul class="sub-menu-list">
                         <li><a href="mobile_game_center.jsp">手游账号</a></li>
-                        <li><a href="#">端游账号</a></li>
-                        <li><a href="#">视频账号</a></li>
+                        <li><a href="pc_game_center.jsp">端游账号</a></li>
+                        <li><a href="vip_video_center.jsp">视频账号</a></li>
                     </ul>
                 </li>
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i>
                     <span>买家角色</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="buyer_order_list.jsp">所有订单</a></li>
-                        <li><a href="#">待付款</a></li>
+                        <li><a href="buyer_no_pay.jsp">待付款</a></li>
                         <li><a href="buyer_renting.jsp">租用中</a></li>
                         <li><a href="#">退款中</a></li>
                         <li><a href="#">售后</a></li>
@@ -112,10 +112,10 @@
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-grain"></i> <span>商家角色</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="business_product_list.jsp">全部商品</a></li>
-                        <li><a href="#">已上架</a></li>
-                        <li><a href="#">已下架</a></li>
-                        <li><a href="#">全部订单</a></li>
-                        <li><a href="#">租用中</a></li>
+                        <li><a href="business_on_sale.jsp">已上架</a></li>
+                        <li><a href="business_off_shelf.jsp">已下架</a></li>
+                        <li><a href="business_order_list.jsp">全部订单</a></li>
+                        <li><a href="business_renting.jsp">租用中</a></li>
                     </ul>
                 </li>
             </ul>

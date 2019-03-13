@@ -22,6 +22,7 @@ public interface IOrderService {
 
     //backend
     ResponseData<PageInfo> manageList(int pageNum, int pageSize);
+    ResponseData<PageInfo> manageList(Integer userId,int pageNum, int pageSize);
     ResponseData<OrderDto> manageDetail(Long orderNo);
     ResponseData<PageInfo> manageSearch(Long orderNo, int pageNum, int pageSize);
     ResponseData<String> manageSendGoods(Long orderNo);

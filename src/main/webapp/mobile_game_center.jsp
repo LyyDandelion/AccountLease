@@ -83,23 +83,23 @@
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-leaf"></i> <span>出租商品</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="product_add_mobile.jsp">手游账号</a></li>
-                        <li><a href="#">端游账号</a></li>
-                        <li><a href="#">视频账号</a></li>
+                        <li><a href="product_add_pc.jsp">端游账号</a></li>
+                        <li><a href="product_add_vip.jsp">视频账号</a></li>
 
                     </ul>
                 </li>
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-send"></i> <span>租号</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="mobile_game_center.jsp">手游账号</a></li>
-                        <li><a href="#">端游账号</a></li>
-                        <li><a href="#">视频账号</a></li>
+                        <li><a href="pc_game_center.jsp">端游账号</a></li>
+                        <li><a href="vip_video_center.jsp">视频账号</a></li>
                     </ul>
                 </li>
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i>
                     <span>买家角色</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="buyer_order_list.jsp">所有订单</a></li>
-                        <li><a href="#">待付款</a></li>
+                        <li><a href="buyer_no_pay.jsp">待付款</a></li>
                         <li><a href="buyer_renting.jsp">租用中</a></li>
                         <li><a href="#">退款中</a></li>
                         <li><a href="#">售后</a></li>
@@ -108,10 +108,10 @@
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-grain"></i> <span>商家角色</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="business_product_list.jsp">全部商品</a></li>
-                        <li><a href="#">已上架</a></li>
-                        <li><a href="#">已下架</a></li>
-                        <li><a href="#">全部订单</a></li>
-                        <li><a href="#">租用中</a></li>
+                        <li><a href="business_on_sale.jsp">已上架</a></li>
+                        <li><a href="business_off_shelf.jsp">已下架</a></li>
+                        <li><a href="business_order_list.jsp">全部订单</a></li>
+                        <li><a href="business_renting.jsp">租用中</a></li>
                     </ul>
                 </li>
             </ul>
@@ -173,7 +173,7 @@
                             <div class="r3_counter_box">
                                 <a href="king_honor.jsp"><img src="http://image.ecit.com/king_honor.png"/></a>
                                 <div class="stats">
-                                    <h5>45 <span>%</span></h5>
+                                    <h5>45688 <span>件商品</span></h5>
                                     <div class="grow">
                                         <p>王者荣耀</p>
                                     </div>
@@ -184,7 +184,7 @@
                             <div class="r3_counter_box">
                                 <img src="http://image.ecit.com/mobie_cs.png"/>
                                 <div class="stats">
-                                    <h5>50 <span>%</span></h5>
+                                    <h5>5055 <span>件商品</span></h5>
                                     <div class="grow grow1">
                                         <p>穿越火线</p>
                                     </div>
@@ -195,7 +195,7 @@
                             <div class="r3_counter_box">
                                 <img src="http://image.ecit.com/id_five.png"/>
                                 <div class="stats">
-                                    <h5>70 <span>%</span></h5>
+                                    <h5>702 <span>件商品</span></h5>
                                     <div class="grow grow3">
                                         <p>第五人格</p>
                                     </div>
@@ -206,7 +206,7 @@
                             <div class="r3_counter_box">
                                 <img src="http://image.ecit.com/naruto.png"/>
                                 <div class="stats">
-                                    <h5>70 <span>%</span></h5>
+                                    <h5>370 <span>件商品</span></h5>
                                     <div class="grow grow2">
                                         <p>火影忍者</p>
                                     </div>

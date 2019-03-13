@@ -1,5 +1,9 @@
 package com.ecit.service.impl;
 
+import com.ecit.bean.Order;
+import com.ecit.bean.OrderItem;
+import com.ecit.dao.OrderItemMapper;
+import com.ecit.dao.OrderMapper;
 import com.ecit.dto.ProductDetailDto;
 import com.ecit.dto.ProductListDto;
 import com.github.pagehelper.PageHelper;
@@ -21,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -39,6 +44,12 @@ public class ProductServiceImpl implements IProductService {
 
     @Autowired
     private ICategoryService iCategoryService;
+
+    @Autowired
+    private OrderItemMapper orderItemMapper;
+
+    @Autowired
+    private OrderMapper orderMapper;
 
     public ResponseData saveOrUpdateProduct(Product product) {
         if (product != null) {
@@ -116,8 +127,34 @@ public class ProductServiceImpl implements IProductService {
         Product product = new Product();
         product.setProductId(productId)
                 .setStatus(status).setCreatedBy(userId);
+        //查看当前商品状态
+        Product currentProduct=productMapper.selectByPrimaryKey(productId);
+        //如果为出租状态，则需要先结束当前订单
+        if(currentProduct.getStatus()==Const.ProductStatusEnum.RENTING.getCode())
+        {
+            OrderItem orderItemTemp=new OrderItem();
+            orderItemTemp.setProductId(productId);
+            OrderItem orderItem=  orderItemMapper.selectBySelective(orderItemTemp);
+            Order orderTemp= orderMapper.selectByOrderNo(orderItem.getOrderNo());
+            if(orderTemp.getOrderStatus().equals(Const.OrderStatusEnum.PAID.getCode()))
+            {
+                orderTemp.setOrderStatus(Const.OrderStatusEnum.ORDER_CLOSE.getCode())
+                         .setCloseTime(new Date());
+                int num= orderMapper.updateByPrimaryKey(orderTemp);
+                if(num>0)
+                {
+                    int rowCount = productMapper.updateByPrimaryKeySelective(product);
+                    if (rowCount > 0) {
+
+                        return ResponseData.success("修改产品销售状态成功");
+                    }
+                }
+            }
+        }
+
         int rowCount = productMapper.updateByPrimaryKeySelective(product);
         if (rowCount > 0) {
+
             return ResponseData.success("修改产品销售状态成功");
         }
         return ResponseData.fail("修改产品销售状态失败");
@@ -260,6 +297,22 @@ public class ProductServiceImpl implements IProductService {
         pageResult.setList(productListVoList);
         return ResponseData.success(pageResult);
     }
+    public ResponseData<PageInfo> getProductList(Long userId,Integer status, int pageNum, int pageSize) {
+        //startPage--start
+        //填充自己的sql查询逻辑
+        //pageHelper-收尾
+        PageHelper.startPage(pageNum, pageSize);
+        List<Product> productList = productMapper.selectByUserIdAndStatus(userId,status);
+        List<ProductListDto> productListVoList = Lists.newArrayList();
+        for (Product productItem : productList) {
+            ProductListDto productListDto = assembleProductListVo(productItem);
+            productListVoList.add(productListDto);
+        }
+        PageInfo pageResult = new PageInfo(productList);
+        pageResult.setList(productListVoList);
+        return ResponseData.success(pageResult);
+    }
+
 
     private ProductListDto assembleProductListVo(Product product) {
         ProductListDto productListDto = new ProductListDto();

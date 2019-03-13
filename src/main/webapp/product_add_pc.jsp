@@ -9,7 +9,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>出租-手游账号</title>
+    <title>出租-端游中心</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="手游账号 网游账号 视频VIP 共享出租 价格实惠"/>
@@ -171,44 +171,44 @@
                     <div class="col_3">
                         <div class="col-md-3 widget widget1" id="">
                             <div class="r3_counter_box">
-                                <a href="product_add_king_honor.jsp"><img src="http://image.ecit.com/king_honor.png"/></a>
+                                <a href="#"><img src="http://image.ecit.com/lol.jpg"/></a>
                                 <div class="stats">
-                                    <h5>95 <span>%成交量</span></h5>
+                                    <h5>45688 <span>件商品</span></h5>
                                     <div class="grow">
-                                        <p>王者荣耀</p>
+                                        <p>英雄联盟</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 widget widget1">
                             <div class="r3_counter_box">
-                                <img src="http://image.ecit.com/mobie_cs.png"/>
+                                <img src="http://image.ecit.com/pubg.jpg"/>
                                 <div class="stats">
-                                    <h5>70 <span>%成交量</span></h5>
+                                    <h5>5055 <span>件商品</span></h5>
                                     <div class="grow grow1">
-                                        <p>穿越火线</p>
+                                        <p>绝地求生</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 widget widget1">
                             <div class="r3_counter_box">
-                                <img src="http://image.ecit.com/id_five.png"/>
+                                <img src="http://image.ecit.com/human_fall.png"/>
                                 <div class="stats">
-                                    <h5>70 <span>%成交量</span></h5>
+                                    <h5>702 <span>件商品</span></h5>
                                     <div class="grow grow3">
-                                        <p>第五人格</p>
+                                        <p>人类一败涂地</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 widget">
                             <div class="r3_counter_box">
-                                <img src="http://image.ecit.com/naruto.png"/>
+                                <img src="http://image.ecit.com/overwatch.jpg"/>
                                 <div class="stats">
-                                    <h5>70 <span>%成交量</span></h5>
+                                    <h5>370 <span>件商品</span></h5>
                                     <div class="grow grow2">
-                                        <p>火影忍者</p>
+                                        <p>守望先锋</p>
                                     </div>
                                 </div>
                             </div>
@@ -269,5 +269,3 @@
 
 </body>
 </html>
-
-

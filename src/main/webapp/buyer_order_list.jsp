@@ -73,23 +73,23 @@
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-leaf"></i> <span>出租商品</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="product_add_mobile.jsp">手游账号</a></li>
-                        <li><a href="#">端游账号</a></li>
-                        <li><a href="#">视频账号</a></li>
+                        <li><a href="product_add_pc.jsp">端游账号</a></li>
+                        <li><a href="product_add_vip.jsp">视频账号</a></li>
 
                     </ul>
                 </li>
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-send"></i> <span>租号</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="mobile_game_center.jsp">手游账号</a></li>
-                        <li><a href="#">端游账号</a></li>
-                        <li><a href="#">视频账号</a></li>
+                        <li><a href="pc_game_center.jsp">端游账号</a></li>
+                        <li><a href="vip_video_center.jsp">视频账号</a></li>
                     </ul>
                 </li>
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i>
                     <span>买家角色</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="buyer_order_list.jsp">所有订单</a></li>
-                        <li><a href="#">待付款</a></li>
+                        <li><a href="buyer_no_pay.jsp">待付款</a></li>
                         <li><a href="buyer_renting.jsp">租用中</a></li>
                         <li><a href="#">退款中</a></li>
                         <li><a href="#">售后</a></li>
@@ -98,10 +98,10 @@
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-grain"></i> <span>商家角色</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="business_product_list.jsp">全部商品</a></li>
-                        <li><a href="#">已上架</a></li>
-                        <li><a href="#">已下架</a></li>
-                        <li><a href="#">全部订单</a></li>
-                        <li><a href="#">租用中</a></li>
+                        <li><a href="business_on_sale.jsp">已上架</a></li>
+                        <li><a href="business_off_shelf.jsp">已下架</a></li>
+                        <li><a href="business_order_list.jsp">全部订单</a></li>
+                        <li><a href="business_renting.jsp">租用中</a></li>
                     </ul>
                 </li>
             </ul>
@@ -175,12 +175,27 @@
                         margin-top: 6%;
                         margin-left: 10%;
                     }
+                    /*.el{*/
+                        /*margin-top: 5px;*/
+                        /*border-top-style: solid;*/
+                        /*border-top-width: 10px;*/
+                        /*!*border-bottom-style: solid;*!*/
+                        /*border-color: #7ad87a;*/
+                    /*}*/
                     .el{
                         margin-top: 5px;
                         border-top-style: solid;
                         border-top-width: 10px;
-                        /*border-bottom-style: solid;*/
                         border-color: #7ad87a;
+                        border-left-width: 2px;
+                        border-left-style: solid;
+                        border-radius: 10px;
+                        padding: 10px;
+                        border-right-width: 10px;
+                        border-right-style: solid;
+                        border-bottom-width: 2px;
+                        border-bottom-style: solid;
+
                     }
                     .list-d{
                         margin-top: 1%;
@@ -234,7 +249,7 @@
                             "<div class='list-d'><span class='label label-warning'>状态</span><span  style='margin-left: 7%'>"+info.statusDesc+"</span></br></div>"+
                             "<div class='list-d'><span class='label label-danger'>时长</span><span  style='margin-left: 7%'>"+info.orderItemDtoList[0].quantity+'小时'+"</span></br></div>"+
                             "<div class='list-d'><span class='label label-default'>金额</span><span  style='margin-left: 7%'>"+info.orderItemDtoList[0].totalPrice+'元'+"</span></br></div>"+
-                            "<div class='list-d'><span class='label label-success'>结束时间</span><span  style='margin-left: 3%'>"+info.closeTime+"</span></br></div><hr></div>"
+                            "<div class='list-d'><span class='label label-success'>结束时间</span><span  style='margin-left: 3%'>"+info.endTime+"</span></br></div><hr></div>"
                         $("#list").append(el);
 
                         var status=info.status;

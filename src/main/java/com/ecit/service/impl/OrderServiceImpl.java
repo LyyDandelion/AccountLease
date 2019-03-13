@@ -652,7 +652,14 @@ public class OrderServiceImpl implements IOrderService {
         pageResult.setList(orderDtoList);
         return ResponseData.success(pageResult);
     }
-
+    public ResponseData<PageInfo> manageList(Integer userId, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Order> orderList = orderMapper.selectAllOrderByBusiness(userId);
+        List<OrderDto> orderDtoList = this.assembleOrderVoList(orderList, null, null);
+        PageInfo pageResult = new PageInfo(orderList);
+        pageResult.setList(orderDtoList);
+        return ResponseData.success(pageResult);
+    }
 
     public ResponseData<OrderDto> manageDetail(Long orderNo) {
         Order order = orderMapper.selectByOrderNo(orderNo);

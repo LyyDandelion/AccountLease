@@ -144,6 +144,20 @@ public class ProductBackController {
         }
     }
 
+    @RequestMapping("get_list_for_status.do")
+    @ResponseBody
+    public ResponseData getListForStatus(HttpSession session,@RequestParam(value="status",defaultValue="-1")String status , @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,@RequestParam(value = "pageSize",defaultValue = "10") int pageSize){
+        User user = (User)session.getAttribute(Const.THIS_USER);
+        if(user == null){
+            return ResponseData.fail(ResponseCode.NEED_LOGIN,"用户未登录,请登录管理员");
+        }
+        if(userService.checkAdminRole(user).isSuccess()){
+            //填充业务
+            return productService.getProductList(pageNum,pageSize);
+        }else{
+            return productService.getProductList(user.getUserId().longValue(),Integer.parseInt(status),pageNum,pageSize);
+        }
+    }
     /**
      * 查询
      * @param session

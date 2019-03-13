@@ -1,15 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2019/3/3
-  Time: 16:58
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>出租-手游账号</title>
+    <title>我是买家-待付款</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/nav-side.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="手游账号 网游账号 视频VIP 共享出租 价格实惠"/>
@@ -36,21 +33,14 @@
     <!--animate-->
     <link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
     <script src="js/wow.min.js"></script>
-    <script>
-        new WOW().init();
-    </script>
-    <!--//end-animate-->
-    <!----webfonts--->
-    <link href='http://fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic'
-          rel='stylesheet' type='text/css'>
-    <!---//webfonts--->
-    <!-- Meters graphs -->
-    <!-- <script src="js/jquery-1.10.2.min.js"></script>-->
-    <!-- Placed js at the end of the document so the pages load faster -->
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/app.js"></script>
     <link rel="stylesheet" type="text/css" href="css/nav-side.css"/>
+
+    <script>
+        new WOW().init();
+    </script>
 </head>
 
 <body class="sticky-header left-side-collapsed">
@@ -121,7 +111,7 @@
     <!-- left side end-->
 
     <!-- main content start-->
-    <div class="main-content main-content2">
+    <div class="main-content main-content6">
         <!-- header-starts -->
         <div class="header-section">
 
@@ -162,61 +152,52 @@
             </div>
             <!--notification menu end -->
         </div>
-        <!--notification menu end -->
-
         <!-- //header-ends -->
         <div id="page-wrapper">
-            <div class="graphs">
-                <div class="widgets_top">
-                    <div class="col_3">
-                        <div class="col-md-3 widget widget1" id="">
-                            <div class="r3_counter_box">
-                                <a href="product_add_king_honor.jsp"><img src="http://image.ecit.com/king_honor.png"/></a>
-                                <div class="stats">
-                                    <h5>95 <span>%成交量</span></h5>
-                                    <div class="grow">
-                                        <p>王者荣耀</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 widget widget1">
-                            <div class="r3_counter_box">
-                                <img src="http://image.ecit.com/mobie_cs.png"/>
-                                <div class="stats">
-                                    <h5>70 <span>%成交量</span></h5>
-                                    <div class="grow grow1">
-                                        <p>穿越火线</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 widget widget1">
-                            <div class="r3_counter_box">
-                                <img src="http://image.ecit.com/id_five.png"/>
-                                <div class="stats">
-                                    <h5>70 <span>%成交量</span></h5>
-                                    <div class="grow grow3">
-                                        <p>第五人格</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 widget">
-                            <div class="r3_counter_box">
-                                <img src="http://image.ecit.com/naruto.png"/>
-                                <div class="stats">
-                                    <h5>70 <span>%成交量</span></h5>
-                                    <div class="grow grow2">
-                                        <p>火影忍者</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
+            <div class="container">
+                <div id="list" class="order-list">
+
+
                 </div>
             </div>
+            <style type="text/css">
+                .order-list, .order-detail{
+                    float: left;
+                    width: 50%;
+                }
+                .order-list{
+                    margin-top: 6%;
+                    margin-left: 10%;
+                }
+                .el{
+                    margin-top: 5px;
+                    border-top-style: solid;
+                    border-top-width: 10px;
+                    border-color: #7ad87a;
+                    border-left-width: 2px;
+                    border-left-style: solid;
+                    border-radius: 10px;
+                    padding: 10px;
+                    border-right-width: 10px;
+                    border-right-style: solid;
+                    border-bottom-width: 2px;
+                    border-bottom-style: solid;
+
+                }
+                .list-d{
+                    margin-top: 1%;
+                }
+                .tip-div{
+                    margin: 16% 34%;
+                    width: 21%;
+                    text-align: center;
+                    font-size: 3em;
+                    display: block;
+                    background: #dacdd0;
+                    border-radius: 10px;
+                }
+            </style>
+
         </div>
     </div>
     <!--footer section start-->
@@ -233,6 +214,9 @@
 <script>
 
     $(document).ready(function () {
+        var info={
+            orderStatus:"NO_PAY"
+        }
         var username = sessionStorage.getItem("username");
         if (username == null) {
             go_login();
@@ -241,27 +225,104 @@
             $("#user_tip").text(username);
         }
         $.ajax({
-            url: "/back/category/get_category.do",
-            type: "get",
-            data: {
-                code: "MOBLIE_GAME"
-            },
-            success: function (data) {
+            url:"/order/list.do",
+            type:"get",
+            data:info,
+            async:false,
+            success:function(data){
                 log(data);
-                if (data.success) {
-                    var info = data.data;
-                    for (var i = 0; i < info.length; i++) {
-                        var el = $("<a></a>");
-                        var br = $("</br>")
-                        el.text(info[i].name);
-                        var file = info[i].code.toLowerCase() + ".jsp";
-                        el.attr("href", file);
-                        $("#game_center").append(el);
-                        $("#game_center").append(br);
+                if(data.success)
+                {
+                    var size=data.data.size;
+                    if(size==0){
+                        var el="<div class='tip-div' style='width: 100%;'>暂无订单!<div>";
+                        $("#list").append(el);
+                    }
+                    else{
+                        for(var i=0;i<data.data.size;i++)
+                        {
+                            var info=data.data.list[i];
+                            var el="<div class='el'><span class='label label-info '>订单号</span><span style='margin-left: 5%'>"+info.orderNo+"</span></br><hr>"+
+                                "<div class='list-d'><span class='label label-primary'>商品名</span><span  style='margin-left: 5%'>"+info.orderItemDtoList[0].productName+"</span></br></div>"+
+                                "<div class='list-d'><span class='label label-warning'>状态</span><span  style='margin-left: 7%'>"+info.statusDesc+"</span></br></div>"+
+                                "<div class='list-d'><span class='label label-danger'>时长</span><span  style='margin-left: 7%'>"+info.orderItemDtoList[0].quantity+'小时'+"</span></br></div>"+
+                                "<div class='list-d'><span class='label label-default'>金额</span><span  style='margin-left: 7%'>"+info.orderItemDtoList[0].totalPrice+'元'+"</span></br></div>"+
+                                "<div class='list-d'><span class='label label-success'>结束时间</span><span  style='margin-left: 3%'>"+info.endTime+"</span></br></div>" +
+                                "<hr></div>"
+                            $("#list").append(el);
+
+
+                            var status=info.status;
+                            //添加按钮事件
+                            var params = [info.orderNo, status];
+                            var btn_op_name;
+                            var btn_op_id;
+                            var btn_op_name_edit;
+                            var btn_edit_id;
+                            var flag=false;
+                            if (status == "NO_PAY") {
+                                btn_op_name = "去支付"
+                                btn_op_id=concat_params("to_pay", params);
+                                flag=true;
+                            }
+                            else if (status == "SUCCESS") {
+                                btn_op_name = "售后处理"
+                                btn_op_id = concat_params("success_sale",params);
+                                flag=true;
+                            }
+                            else if (status == "PAID") {
+                                btn_op_name = "取消订单"
+                                btn_op_id = concat_params("cancel_order",params);
+                                flag=true;
+                            }
+                            if(flag){
+                                // var btn_el="<button id='" + btn_op_id + "' style='width:55%;height:35px;margin-left: 15%;' class='btn btn-primary btn_op_name'>" + btn_op_name + "</button>"
+                                // $("#list").append(btn_el);
+                            }
+
+
+                        }
+                    }
+
+                }
+                else{
+                    alert("error:"+JSON.stringify(data));
+                    if(data.code=="300")
+                    {
+                        go_login();
                     }
                 }
+            },
+            error:function(data) {
+                //alert("error:"+JSON.stringify(data));
+                if(data.code=="300")
+                {
+                    go_login();
+                    log(data);
+                }
             }
-        })
+        });
+
+        /**
+         * 拼接字符
+         * @param name
+         * @param params
+         * @param split
+         * @returns {*}
+         */
+        function concat_params(name, params, split) {
+            if(split==null)
+            {
+                split="-";
+            }
+            var str = name;
+            for (var i = 0; i < params.length; i++) {
+                str += split;
+                str += params[i];
+            }
+            return  str;
+        }
+
 
     });
 
@@ -269,5 +330,7 @@
 
 </body>
 </html>
+
+
 
 

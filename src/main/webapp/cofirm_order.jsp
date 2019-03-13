@@ -71,23 +71,23 @@
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-leaf"></i> <span>出租商品</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="product_add_mobile.jsp">手游账号</a></li>
-                        <li><a href="#">端游账号</a></li>
-                        <li><a href="#">视频账号</a></li>
+                        <li><a href="product_add_pc.jsp">端游账号</a></li>
+                        <li><a href="product_add_vip.jsp">视频账号</a></li>
 
                     </ul>
                 </li>
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-send"></i> <span>租号</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="mobile_game_center.jsp">手游账号</a></li>
-                        <li><a href="#">端游账号</a></li>
-                        <li><a href="#">视频账号</a></li>
+                        <li><a href="pc_game_center.jsp">端游账号</a></li>
+                        <li><a href="vip_video_center.jsp">视频账号</a></li>
                     </ul>
                 </li>
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i>
                     <span>买家角色</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="buyer_order_list.jsp">所有订单</a></li>
-                        <li><a href="#">待付款</a></li>
+                        <li><a href="buyer_no_pay.jsp">待付款</a></li>
                         <li><a href="buyer_renting.jsp">租用中</a></li>
                         <li><a href="#">退款中</a></li>
                         <li><a href="#">售后</a></li>
@@ -96,10 +96,10 @@
                 <li class="menu-list"><a href="#"><i class="glyphicon glyphicon-grain"></i> <span>商家角色</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="business_product_list.jsp">全部商品</a></li>
-                        <li><a href="#">已上架</a></li>
-                        <li><a href="#">已下架</a></li>
-                        <li><a href="#">全部订单</a></li>
-                        <li><a href="#">租用中</a></li>
+                        <li><a href="business_on_sale.jsp">已上架</a></li>
+                        <li><a href="business_off_shelf.jsp">已下架</a></li>
+                        <li><a href="business_order_list.jsp">全部订单</a></li>
+                        <li><a href="business_renting.jsp">租用中</a></li>
                     </ul>
                 </li>
             </ul>
@@ -305,22 +305,27 @@
                             url: "/order/query_order_pay_status.do",
                             type: "get",
                             data: request_pay,
+                            async:false,
                             success: function (data) {
                                 if(data.success)
                                 {
                                     var info=data.data;
                                     if(info){
+                                        // debugger;
                                         //更新信息
                                         $.ajax({
                                             url:"/order/update_order_info.do",
                                             data:request_pay,
+                                            type:"post",
+                                            async:false,
                                             success:function(data)
                                             {
                                                 log(data);
-                                                alert("支付成功");
+                                                alert("支付成功!将跳转至订单租用页面查看订单信息");
+                                                $(location).prop("href","buyer_renting.jsp");
                                             }
                                         });
-                                        $(location).prop("href","result.jsp?_ecit_type=payment_success");
+                                        // $(location).prop("href","result.jsp?_ecit_type=payment_success");
                                     }
                                 }
                             }

@@ -123,9 +123,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="sub_home">
                     <div class="sub_home_left">
-                        <form>
-                            <input id="doRegister" type="submit" value="提交">
-                        </form>
+                            <button id="doRegister" class="btn btn-danger btn-lg" style="width: 100%;">提交</button>
                     </div>
                     <div class="sub_home_right">
                         <p>返回 <a href="index.jsp">首页</a></p>
@@ -184,7 +182,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         console.log("data:"+JSON.stringify(data));
                         if(data.success)
                         {
-                            $(location).prop('href', 'result.jsp?_ecit_type=register_success&_ecit_result=success');
+                            alert("注册成功");
+                            $(location).prop('href', 'login.jsp');
 
                         }
                         else

@@ -28,4 +28,7 @@ public interface ProductMapper {
 
 
     List<Product> selectByUserId(Long userId);
+
+    List<Product> selectByUserIdAndStatus(@Param("userId")Long userId,@Param("status") Integer status);
+
 }

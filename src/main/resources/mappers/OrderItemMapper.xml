@@ -43,6 +43,22 @@
     from ecit_order_item
     where order_item_id = #{orderItemId,jdbcType=INTEGER}
   </select>
+
+  <select id="selectSelective" parameterType="com.ecit.bean.OrderItem" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ecit_order_item
+    <where>
+      <if test="orderNo!=null">
+        and order_no={#order_no}
+      </if>
+      <if test="productId!=null">
+        and product_id={#productId}
+      </if>
+    </where>
+
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from ecit_order_item
     where order_item_id = #{orderItemId,jdbcType=INTEGER}

@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  */
 
 @Controller
-@RequestMapping("/back/order")
+@RequestMapping("/back/order/")
 public class OrderBackController {
 
     @Autowired
@@ -37,13 +37,13 @@ public class OrderBackController {
         User user = (User)session.getAttribute(Const.THIS_USER);
         if(user == null){
             return ResponseData.fail(ResponseCode.NEED_LOGIN,"用户未登录,请登录管理员");
-
         }
+        //todo  权限放开
         if(userService.checkAdminRole(user).isSuccess()){
             //填充我们增加产品的业务逻辑
             return orderService.manageList(pageNum,pageSize);
         }else{
-            return ResponseData.fail("无权限操作");
+            return orderService.manageList(user.getUserId().intValue(),pageNum,pageSize);
         }
     }
 

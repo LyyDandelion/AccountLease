@@ -37,6 +37,13 @@
         from ecit_product
         where created_by = #{userId}
     </select>
+    <select id="selectByUserIdAndStatus" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ecit_product
+        where created_by = #{userId}
+        and status=#{status}
+    </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from ecit_product

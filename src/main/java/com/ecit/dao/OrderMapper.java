@@ -14,6 +14,9 @@ public interface OrderMapper {
 
     Order selectByPrimaryKey(Integer id);
 
+    Order selectBySelective(Order record);
+
+
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
@@ -30,5 +33,7 @@ public interface OrderMapper {
     List<Order> selectByUserIdAndStatus(@Param("userId")Integer userId,@Param("orderStatus")String orderStatus);
 
     List<Order> selectAllOrder();
+
+    List<Order> selectAllOrderByBusiness(@Param("userId")Integer userId);
 
 }

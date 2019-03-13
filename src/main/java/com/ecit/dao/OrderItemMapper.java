@@ -13,6 +13,7 @@ public interface OrderItemMapper {
     int insertSelective(OrderItem record);
 
     OrderItem selectByPrimaryKey(Integer id);
+    OrderItem selectSelective(OrderItem record);
 
     int updateByPrimaryKeySelective(OrderItem record);
 

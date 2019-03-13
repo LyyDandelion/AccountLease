@@ -50,6 +50,31 @@
     from ecit_order
     where order_id = #{orderId,jdbcType=INTEGER}
   </select>
+  <select id="selectBySelective" parameterType="com.ecit.bean.Order" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ecit_order
+    <where>
+      <if test="orderNo!=null">
+       and order_no={#orderNo}
+      </if>
+      <if test="orderId!=null">
+        and order_id={#orderId}
+      </if>
+      <if test="userId!=null">
+        and user_id={#userId}
+      </if>
+      <if test="shippingId!=null">
+        and shipping_id={#shippingId}
+      </if>
+      <if test="orderStatus!=null">
+        and order_status={#orderStatus}
+      </if>
+    </where>
+
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from ecit_order
     where order_id = #{orderId,jdbcType=INTEGER}
@@ -292,4 +317,26 @@
     from ecit_order
     ORDER BY  creation_date desc
   </select>
+  <select id="selectAllOrderByBusiness"  parameterType="map" resultMap="res">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from ecit_order eo
+    WHERE
+    eo.order_no
+    IN
+    (
+    SELECT eoi.order_no
+    FROM ecit_order_item eoi
+    WHERE eoi.product_id
+    IN
+    (
+    SELECT ep.product_id
+    FROM ecit_product ep
+    WHERE ep.created_by =#{userId}
+    )
+    )
+    ORDER BY  eo.creation_date desc
+  </select>
+
+
 </mapper>

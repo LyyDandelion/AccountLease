@@ -29,4 +29,5 @@ public interface IProductService {
     ResponseData<PageInfo> getProductByKeywordCategory(Long userId,String isMine,String keyword, Integer categoryId, int pageNum, int pageSize, String orderBy);
 
 
+    ResponseData<PageInfo> getProductList(Long userId, Integer status, int pageNum, int pageSize);
 }

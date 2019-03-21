@@ -46,7 +46,6 @@ public class ProductController {
                                        @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                        @RequestParam(value = "orderBy", defaultValue = "") String orderBy) {
         User user=(User)session.getAttribute(Const.THIS_USER);
-
         if(user==null)
         {
             return ResponseData.fail(ResponseCode.NEED_LOGIN,"NEED_LOGIN");

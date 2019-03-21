@@ -198,9 +198,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 log(data);
                 if (data.success) {
                     var info = data.data;
+
                     for (var i = 0;i < info.size;i++) {
                         build_product(info,i);
                     }
+                    nav_page();
+                    //封装分页信息
+                    $("#page_nav").attr("pageNum",info.pageNum).attr("pageSize",info.pageSize).attr("pages", info.pages)
+                        .attr("total",info.total);
                 }
                 else {
                     alert("error:"+data.msg);
@@ -215,6 +220,103 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             // var productId = params[1];
             $(location).prop("href","product_detail.jsp?productId="+this.id);
         });
+        $("body").on("click", ".page", function (data) {
+            var param = this.id;
+            var pageNum=$("#page_nav").attr("pageNum");
+            var pages=$("#page_nav").attr("pages");
+            // 销毁之前数据
+            $("#div_list").empty();
+            if(param=='previous')
+            {
+                if(Number(pageNum)==1)
+                {
+                    request_info['pageNum']=Number(pageNum)
+                }
+                else {
+                    request_info['pageNum']=Number(pageNum)-1
+                }
+
+                $.ajax({
+                    url: "/product/list.do",
+                    type: "get",
+                    data: request_info,
+                    success: function (data) {
+                        log(data);
+                        if (data.success) {
+                            var info = data.data;
+                            for (var i = 0;i < info.size;i++) {
+                                build_product(info,i);
+                            }
+                            nav_page();
+                            //封装分页信息
+                            $("#page_nav").attr("pageNum",info.pageNum).attr("pageSize",info.pageSize).attr("pages", info.pages)
+                                .attr("total",info.total);
+                        }
+                        else {
+                            alert("error:"+data.msg);
+                        }
+
+                    }
+                });
+            }
+            else if(param=='next')
+            {
+                if(Number(pageNum)==Number(pages))
+                {
+                    request_info['pageNum']=Number(pageNum)
+                }
+                else
+                {
+                    request_info['pageNum']=Number(pageNum)+1
+                }
+
+                $.ajax({
+                    url: "/product/list.do",
+                    type: "get",
+                    data: request_info,
+                    success: function (data) {
+                        log(data);
+                        if (data.success) {
+                            var info = data.data;
+                            for (var i = 0;i < info.size;i++) {
+                                build_product(info,i);
+                            }
+                            nav_page();
+                            //封装分页信息
+                            $("#page_nav").attr("pageNum",info.pageNum).attr("pageSize",info.pageSize).attr("pages", info.pages)
+                                .attr("total",info.total);
+                        }
+                        else {
+                            alert("error:"+data.msg);
+                        }
+
+                    }
+                });
+            }
+
+            // $(location).prop("href","product_detail.jsp?productId="+this.id);
+        });
+
+        // 分页
+        function nav_page(){
+            var page_el="<div><nav id='page_nav' aria-label=\"Page navigation\" style='text-align: center;'>\n" +
+                "  <ul class=\"pagination\">\n" +
+                "    <li>\n" +
+                "      <a href=\"#\" id='previous' class='page'  aria-label=\"Previous\">\n" +
+                "        <span aria-hidden=\"true\">&laquo;</span>\n" +
+                "      </a>\n" +
+                "    </li>\n" +
+                "    <li>\n" +
+                "      <a href=\"#\" id='next' class='page' aria-label=\"Next\">\n" +
+                "        <span aria-hidden=\"true\">&raquo;</span>\n" +
+                "      </a>\n" +
+                "    </li>\n" +
+                "  </ul>\n" +
+                "</nav></div>"
+
+            $("#div_list").append(page_el);
+
+        }
 
 
         function build_product(info,i){

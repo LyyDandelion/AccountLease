@@ -5,7 +5,7 @@
 [账号出租系统操作手册](/document/账号出租系统操作手册.docx)
 
 [项目接口文档](/document/项目接口文档.docx)
-## 操作手册（md版本）
+## 操作手册（图解版本）
 [账号出租系统操作手册](/document/SystemDetail.md)
 
 页面效果：
